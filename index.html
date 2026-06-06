@@ -500,7 +500,7 @@ body {
 <div class="c cn" style="grid-row:1;grid-column:1;background:linear-gradient(135deg,#d06c1a,#E67E22);"><div class="n" style="font-size:8px;">CERTIFIED</div><div class="d">L1<br>Product User<br>Orange</div></div>
 
 <!-- ===== TOP ROW: C2C SUCCESS / LEARN (yellow) ===== -->
-<div class="c" style="grid-row:1;grid-column:2;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">GO &rarr;</div><div class="d">Fast Pass</div></div>
+<div class="c" style="grid-row:1;grid-column:2;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">GO &rarr;</div><div class="d">Fast Pass<br>Free Student DCU</div></div>
 <div class="c" style="grid-row:1;grid-column:3;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">iCard</div><div class="d">$199 Know Self</div></div>
 <div class="c" style="grid-row:1;grid-column:4;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">SV</div><div class="d">Know What<br>You Want</div></div>
 <div class="c" style="grid-row:1;grid-column:5;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">NASA</div><div class="d">Alignment<br>TTT+TEMP</div></div>
@@ -1173,21 +1173,29 @@ body {
 
   /* Detect family color of a cell by inspecting its .s stripe or its own background */
   function familyOf(cell) {
-    // Corner cells use linear-gradient inline; pull a color hint from the gradient
-    const ownBg = cell.style.background || '';
-    if (/--find/.test(ownBg))    return 'c-orange';
-    if (/--green/.test(ownBg))   return 'c-green';
-    if (/--yellow/.test(ownBg))  return 'c-yellow';
-    if (/--red/.test(ownBg))     return 'c-red';
-    if (/--blue|#4a9fd5|#5DADE2/.test(ownBg)) return 'c-blue';
-    if (/--dark|#0f0f23|#1a1a2e|#16213e|#111128/.test(ownBg)) return 'c-dark';
-    if (/--cream|#faf8f4/.test(ownBg)) return 'c-cream';
+    // Corner cells use linear-gradient inline; pull a color hint from the gradient.
+    // Browsers normalize hex to rgb() when reading .style.background, so check both forms.
+    const ownBg = (cell.style.background || cell.style.backgroundColor || '').toLowerCase();
+    // Blue first (CLIENT corner)
+    if (/--blue|4a9fd5|5dade2|rgb\(\s*74,\s*159,\s*213|rgb\(\s*93,\s*173,\s*226/.test(ownBg)) return 'c-blue';
+    // Orange / Find
+    if (/--find|e67e22|f39c4f|d06c1a|rgb\(\s*230,\s*126,\s*34|rgb\(\s*243,\s*156,\s*79|rgb\(\s*208,\s*108,\s*26/.test(ownBg)) return 'c-orange';
+    // Green
+    if (/--green|27ae60|2ecc71|219a54|rgb\(\s*39,\s*174,\s*96|rgb\(\s*46,\s*204,\s*113|rgb\(\s*33,\s*154,\s*84/.test(ownBg)) return 'c-green';
+    // Yellow
+    if (/--yellow|f1c40f|f4d03f|b8960c|rgb\(\s*241,\s*196,\s*15|rgb\(\s*244,\s*208,\s*63|rgb\(\s*184,\s*150,\s*12/.test(ownBg)) return 'c-yellow';
+    // Red
+    if (/--red|c0392b|e74c3c|rgb\(\s*192,\s*57,\s*43|rgb\(\s*231,\s*76,\s*60/.test(ownBg)) return 'c-red';
+    // Dark
+    if (/--dark|0f0f23|1a1a2e|16213e|111128|rgb\(\s*15,\s*15,\s*35|rgb\(\s*26,\s*26,\s*46|rgb\(\s*22,\s*33,\s*62/.test(ownBg)) return 'c-dark';
+    // Cream
+    if (/--cream|faf8f4/.test(ownBg)) return 'c-cream';
     // Otherwise look at the .s stripe
     const stripe = cell.querySelector('.s');
     if (stripe) {
-      const bg = stripe.style.background || stripe.style.backgroundColor || '';
+      const bg = (stripe.style.background || stripe.style.backgroundColor || '').toLowerCase();
       for (const key of Object.keys(CSS_VAR_COLORS)) {
-        if (bg.indexOf(key) !== -1) return CSS_VAR_COLORS[key];
+        if (bg.indexOf(key.toLowerCase()) !== -1) return CSS_VAR_COLORS[key];
       }
     }
     return 'c-cream';
