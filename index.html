@@ -439,37 +439,21 @@ body {
 .footer { text-align:center; padding:24px 20px; font-size:9px; color:#b0a99a; border-top:1px solid rgba(0,0,0,0.06); margin-top:40px; font-family:'JetBrains Mono',monospace; background:rgba(255,255,255,0.3); }
 .footer .brands { font-size:8px; letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; color:#c0b9aa; }
 
-/* ===== LAYER 2: GROWTH RINGS ===== */
-.layer2-wrap { display:flex; flex-direction:column; align-items:center; padding:36px 12px 8px; }
+/* ===== LAYER 2: INNER BOARD (mini-replica of outer) ===== */
+.layer2-wrap { display:flex; flex-direction:column; align-items:center; padding:36px 12px 24px; }
 .layer2-intro { text-align:center; max-width:680px; font-family:'DM Sans',sans-serif; color:#555; margin-bottom:24px; line-height:1.55; font-size:13px; }
 .layer2-intro strong { color:var(--dark); font-weight:800; }
-.layer2-board { position:relative; width:640px; height:640px; margin:0 auto 36px; }
-.ring { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); border-radius:50%; cursor:pointer; transition:transform 0.18s, box-shadow 0.18s; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.35), 0 4px 12px rgba(0,0,0,0.12); }
-.ring:hover { transform:translate(-50%,-50%) scale(1.015); box-shadow:inset 0 0 0 2px rgba(255,255,255,0.5), 0 8px 24px rgba(0,0,0,0.18); }
-.ring-l2 { width:640px; height:640px; background:linear-gradient(135deg,#b8651a,var(--find)); z-index:1; }
-.ring-l3 { width:500px; height:500px; background:linear-gradient(135deg,#1b8745,var(--green)); z-index:2; }
-.ring-l4 { width:360px; height:360px; background:linear-gradient(135deg,#b8960c,var(--yellow)); z-index:3; }
-.ring-l5 { width:220px; height:220px; background:linear-gradient(135deg,#7a1f15,var(--red)); z-index:4; }
-.ring-label { position:absolute; left:50%; transform:translateX(-50%); text-align:center; font-family:'Playfair Display',serif; font-weight:900; color:#fff; letter-spacing:1.5px; text-shadow:0 1px 3px rgba(0,0,0,0.4); user-select:none; pointer-events:none; }
-.ring-label .rl-lvl { font-size:14px; line-height:1; }
-.ring-label .rl-name { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; opacity:0.92; margin-top:4px; }
-.ring-label .rl-range { font-size:10px; font-family:'JetBrains Mono',monospace; opacity:0.88; margin-top:3px; letter-spacing:0; }
-.ring-l2 .ring-label { top:12px; }
-.ring-l3 .ring-label { top:12px; }
-.ring-l4 .ring-label { top:12px; }
-.ring-l4 .ring-label { color:var(--dark); text-shadow:0 1px 2px rgba(255,255,255,0.6); }
-.ring-l5 .ring-label { top:14px; }
-.ring-center { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:130px; height:130px; border-radius:50%; background:radial-gradient(circle at 30% 30%,#962d22,#5e1a13); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px; text-align:center; color:#fff; z-index:5; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.25), 0 4px 16px rgba(0,0,0,0.3); cursor:pointer; transition:transform 0.18s; }
-.ring-center:hover { transform:translate(-50%,-50%) scale(1.05); }
-.ring-center .l6-tag { font-family:'Playfair Display',serif; font-weight:900; font-size:14px; letter-spacing:1.5px; line-height:1; }
-.ring-center .l6-sub { font-size:7.5px; opacity:0.85; margin-top:3px; letter-spacing:1.5px; text-transform:uppercase; }
-.ring-center .l6-range { font-size:8.5px; font-family:'JetBrains Mono',monospace; opacity:0.88; margin-top:4px; }
-.l6-options { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:720px; margin:8px auto 24px; }
-.l6-opt { background:linear-gradient(135deg,#962d22,#c0392b); color:#fff; padding:10px 14px; border-radius:var(--radius-sm); min-width:140px; text-align:center; cursor:pointer; transition:transform 0.18s, box-shadow 0.18s; box-shadow:var(--shadow-sm); border:1px solid rgba(255,255,255,0.15); }
-.l6-opt:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
-.l6-opt .lo-title { font-family:'Playfair Display',serif; font-weight:900; font-size:11px; letter-spacing:0.5px; line-height:1.15; }
-.l6-opt .lo-sub { font-size:8px; opacity:0.78; margin-top:4px; letter-spacing:0.5px; text-transform:uppercase; }
-.layer2-legend { font-size:10px; color:#888; max-width:640px; text-align:center; margin:0 auto 24px; line-height:1.55; font-style:italic; }
+.inner-board-outer { display:flex; flex-direction:column; align-items:center; margin:8px auto 24px; padding:0; }
+.inner-board-frame { background:linear-gradient(145deg,#12122a,#1e1e3a); padding:6px; border-radius:var(--radius-lg); box-shadow:var(--shadow-xl),0 0 0 1px rgba(255,255,255,0.05),inset 0 1px 0 rgba(255,255,255,0.08); position:relative; }
+.inner-board { display:grid; grid-template-columns:repeat(11, 38px); grid-template-rows:repeat(11, 38px); gap:2px; background:rgba(240,237,230,0.95); border-radius:var(--radius-md); position:relative; }
+/* Inner cells (smaller version of .c) */
+.ic { background:var(--cream); position:relative; overflow:hidden; transition:transform 0.18s, box-shadow 0.18s; border:1px solid rgba(0,0,0,0.06); cursor:pointer; }
+.ic:hover { z-index:2; transform:scale(1.1); box-shadow:0 4px 14px rgba(0,0,0,0.2); border-radius:4px; border-color:transparent; }
+.ic .ics { height:4px; width:100%; position:absolute; top:0; left:0; }
+.ic .icn { font-size:5.5px; font-weight:700; line-height:1.1; color:var(--dark); text-align:center; padding:5px 1px 1px; }
+.icc { font-weight:800; border-radius:4px!important; border:none!important; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; text-align:center; padding:3px; }
+.icc-text { font-family:'Playfair Display',serif; font-size:7.5px; font-weight:900; color:#fff; letter-spacing:0.3px; line-height:1.05; }
+.inner-board-label { font-family:'JetBrains Mono',monospace; font-size:9px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-top:12px; }
 
 /* ===== PARKED STASH (off-board cells) ===== */
 .parked-stash { max-width:960px; margin:16px auto 0; padding:0; background:rgba(255,255,255,0.55); border:1.5px dashed rgba(0,0,0,0.18); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); transform-origin:top left; transition:box-shadow 0.18s; position:relative; }
@@ -875,70 +859,70 @@ body {
 </div>
 </div></div>
 
-<!-- ==================== LAYER 2 TAB: GROWTH RINGS ==================== -->
+<!-- ==================== LAYER 2 TAB: INNER BOARD (mini-replica) ==================== -->
 <div id="tab-layer2" class="tab-content">
 <div class="layer2-wrap">
   <div class="layer2-intro">
-    A <strong>layer down</strong> from the Proven Process. The same four colors now mark the certified-dealer journey: <strong>L2 (orange)</strong> &rarr; <strong>L3 (green)</strong> &rarr; <strong>L4 (yellow)</strong> &rarr; <strong>L5 (red)</strong>. The yellow gateway at top corner is the Certified Dealership; cross past L5 and the colors turn red &mdash; you&rsquo;re inside <strong>L6 Expert</strong>: the options layer.
+    A <strong>layer down</strong>. Same grid, same square count, same four colored sides as the outer board &mdash; just smaller. Cells are <strong>blank for now</strong>; fill them in later. Same structure: Discover (orange, bottom) &rarr; Train (green, left) &rarr; Learn (yellow, top) &rarr; Earn (red, right), four corners.
   </div>
-  <div class="layer2-board" id="layer2Board">
-    <div class="ring ring-l2" onclick="openLayer2Deed('L2')">
-      <div class="ring-label">
-        <div class="rl-lvl">L2</div>
-        <div class="rl-name">Contractor</div>
-        <div class="rl-range">$10K&ndash;$250K</div>
-      </div>
-    </div>
-    <div class="ring ring-l3" onclick="openLayer2Deed('L3')">
-      <div class="ring-label">
-        <div class="rl-lvl">L3</div>
-        <div class="rl-name">Dealer</div>
-        <div class="rl-range">$250K&ndash;$500K</div>
-      </div>
-    </div>
-    <div class="ring ring-l4" onclick="openLayer2Deed('L4')">
-      <div class="ring-label">
-        <div class="rl-lvl">L4</div>
-        <div class="rl-name">Dealer Pro</div>
-        <div class="rl-range">$500K&ndash;$750K</div>
-      </div>
-    </div>
-    <div class="ring ring-l5" onclick="openLayer2Deed('L5')">
-      <div class="ring-label">
-        <div class="rl-lvl">L5</div>
-        <div class="rl-name">Certified</div>
-        <div class="rl-range">$750K&ndash;$1.25M</div>
-      </div>
-    </div>
-    <div class="ring-center" onclick="openLayer2Deed('L6')">
-      <div class="l6-tag">L6</div>
-      <div class="l6-sub">Expert</div>
-      <div class="l6-range">$1.25M+</div>
-    </div>
-  </div>
-  <div class="layer2-legend">Cross past L5 (red) into the center &mdash; you are now in L6 Expert territory. The options below are what unlock once you Go Red.</div>
-  <div class="l6-options">
-    <div class="l6-opt" onclick="openLayer2Deed('L6-MPC')">
-      <div class="lo-title">Multiple<br>Profit Centers</div>
-      <div class="lo-sub">Clone the System</div>
-    </div>
-    <div class="l6-opt" onclick="openLayer2Deed('L6-CLONE')">
-      <div class="lo-title">Clone &amp;<br>Multiply</div>
-      <div class="lo-sub">Replicate L1-L5</div>
-    </div>
-    <div class="l6-opt" onclick="openLayer2Deed('L6-L7')">
-      <div class="lo-title">L7 Retail<br>Hub</div>
-      <div class="lo-sub">$1M+/yr &middot; 5yr</div>
-    </div>
-    <div class="l6-opt" onclick="openLayer2Deed('L6-SHO')">
-      <div class="lo-title">Showroom<br>&amp; Rentals</div>
-      <div class="lo-sub">CP Floors</div>
-    </div>
-    <div class="l6-opt" onclick="openLayer2Deed('L6-SVC')">
-      <div class="lo-title">Service &amp;<br>Training</div>
-      <div class="lo-sub">Dispatch</div>
-    </div>
-  </div>
+
+  <div class="inner-board-outer">
+  <div class="inner-board-frame">
+  <div class="inner-board">
+
+    <!-- ===== TOP ROW (row 1): LEARN (yellow), reads left to right ===== -->
+    <div class="ic icc" style="grid-row:1;grid-column:1;background:linear-gradient(135deg,#b8960c,var(--yellow));"><span class="icc-text" style="color:var(--dark);">L4&nbsp;CERT</span></div>
+    <div class="ic" style="grid-row:1;grid-column:2;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:3;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:4;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:5;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:6;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:7;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:8;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:9;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic" style="grid-row:1;grid-column:10;"><div class="ics" style="background:var(--yellow);"></div></div>
+    <div class="ic icc" style="grid-row:1;grid-column:11;background:linear-gradient(135deg,#7a1f15,var(--red));"><span class="icc-text">L5&nbsp;READY</span></div>
+
+    <!-- ===== LEFT COLUMN (col 1): TRAIN (green), rows 2-10 ===== -->
+    <div class="ic" style="grid-row:2;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:3;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:4;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:5;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:6;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:7;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:8;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:9;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+    <div class="ic" style="grid-row:10;grid-column:1;"><div class="ics" style="background:var(--green);"></div></div>
+
+    <!-- ===== RIGHT COLUMN (col 11): EARN (red), rows 2-10 ===== -->
+    <div class="ic" style="grid-row:2;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:3;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:4;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:5;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:6;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:7;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:8;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:9;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+    <div class="ic" style="grid-row:10;grid-column:11;"><div class="ics" style="background:var(--red);"></div></div>
+
+    <!-- ===== BOTTOM ROW (row 11): DISCOVER (orange), reads right to left ===== -->
+    <div class="ic icc" style="grid-row:11;grid-column:1;background:linear-gradient(135deg,#1b8745,var(--green));"><span class="icc-text">L2&nbsp;START</span></div>
+    <div class="ic" style="grid-row:11;grid-column:2;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:3;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:4;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:5;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:6;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:7;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:8;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:9;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic" style="grid-row:11;grid-column:10;"><div class="ics" style="background:var(--find);"></div></div>
+    <div class="ic icc" style="grid-row:11;grid-column:11;background:linear-gradient(135deg,#b8651a,var(--find));"><span class="icc-text">GO</span></div>
+
+  </div><!-- end .inner-board -->
+  </div><!-- end .inner-board-frame -->
+  <div class="inner-board-label">Inner board &middot; 11&times;11 grid &middot; 40 spaces &middot; blank &mdash; fill in later</div>
+  </div><!-- end .inner-board-outer -->
+
 </div>
 </div>
 
