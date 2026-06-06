@@ -440,12 +440,18 @@ body {
 .footer .brands { font-size:8px; letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; color:#c0b9aa; }
 
 /* ===== PARKED STASH (off-board cells) ===== */
-.parked-stash { max-width:960px; margin:16px auto 0; padding:14px 18px 16px; background:rgba(255,255,255,0.55); border:1.5px dashed rgba(0,0,0,0.18); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); }
-.parked-label { font-family:'JetBrains Mono',monospace; font-size:9px; color:#999; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; text-align:center; }
-.parked-cells { position:relative; height:140px; max-width:760px; margin:0 auto; overflow:visible; }
-.parked-c { width:64px!important; height:54px!important; opacity:0.9; transition:opacity 0.2s, box-shadow 0.18s; z-index:50; }
-.parked-c:hover { opacity:1; z-index:55; box-shadow:0 4px 12px rgba(0,0,0,0.2); }
-.parked-c.dragging { z-index:120!important; box-shadow:0 8px 24px rgba(0,0,0,0.35)!important; opacity:1; }
+.parked-stash { max-width:960px; margin:16px auto 0; padding:0; background:rgba(255,255,255,0.55); border:1.5px dashed rgba(0,0,0,0.18); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); transform-origin:top left; transition:box-shadow 0.18s; position:relative; }
+.parked-stash.dragging { box-shadow:0 12px 36px rgba(0,0,0,0.25); }
+.parked-handle { display:flex; align-items:center; justify-content:space-between; padding:8px 14px 6px; cursor:grab; user-select:none; border-bottom:1px dashed rgba(0,0,0,0.1); background:rgba(0,0,0,0.02); border-radius:var(--radius-md) var(--radius-md) 0 0; }
+.parked-handle:active { cursor:grabbing; }
+.parked-label { font-family:'JetBrains Mono',monospace; font-size:9px; color:#999; letter-spacing:2px; text-transform:uppercase; }
+.parked-grip { font-size:14px; color:#999; line-height:1; letter-spacing:-2px; padding-right:8px; }
+.parked-controls { display:flex; gap:4px; }
+.parked-controls button { width:22px; height:22px; border:1px solid rgba(0,0,0,0.12); background:#fff; color:#555; font-size:12px; font-weight:700; border-radius:4px; cursor:pointer; line-height:1; padding:0; transition:background 0.15s, color 0.15s; }
+.parked-controls button:hover { background:var(--dark); color:#fff; border-color:var(--dark); }
+.parked-cells { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; padding:14px 18px 16px; }
+.parked-c { width:64px; height:54px; opacity:0.9; transition:opacity 0.2s, transform 0.18s; cursor:pointer; }
+.parked-c:hover { opacity:1; transform:scale(1.08); z-index:5; }
 
 /* ===== TITLE-DEED MODAL ===== */
 .c { cursor:pointer; }
@@ -800,18 +806,26 @@ body {
 <div class="outside-label outside-bottom">D I S C O V E R</div>
 
 <!-- ===== PARKED STASH: Growth Levels (off-board for now) ===== -->
-<div class="parked-stash">
-  <div class="parked-label">Parked &middot; Growth Levels &mdash; drag to move</div>
-  <div class="parked-cells" id="parkedZone">
-    <div class="c parked-c drag-piece" id="dp-park-L2" style="left:0px;top:0px;"><div class="s" style="background:var(--green);"></div><div class="n">L2<br>Contractor</div><div class="d">$10K&ndash;$250K</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-L3" style="left:70px;top:0px;"><div class="s" style="background:var(--yellow);"></div><div class="n">L3<br>Dealer</div><div class="d">$250K&ndash;$500K</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-L4" style="left:140px;top:0px;"><div class="s" style="background:var(--yellow);"></div><div class="n">L4<br>Dealer Pro</div><div class="d">$500K&ndash;$750K</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-L5" style="left:210px;top:0px;"><div class="s" style="background:var(--yellow);"></div><div class="n">L5<br>Certified</div><div class="d">$750K&ndash;$1.25M</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-L6" style="left:280px;top:0px;"><div class="s" style="background:var(--red);"></div><div class="n">L6 Expert<br>Dealership</div><div class="d">$1.25M+ (3yr)<br>Go Red</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-MPC" style="left:0px;top:62px;"><div class="s" style="background:var(--red);"></div><div class="n">Multiple<br>Profit Centers</div><div class="d">Clone the<br>System</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-L7" style="left:70px;top:62px;"><div class="s" style="background:var(--blue);"></div><div class="n">L7 Retail<br>Hub</div><div class="d">$1M+/yr (5yr)</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-SHO" style="left:140px;top:62px;"><div class="s" style="background:var(--blue);"></div><div class="n">Showroom<br>&amp; Rentals</div><div class="d">CP Floors</div></div>
-    <div class="c parked-c drag-piece" id="dp-park-SVC" style="left:210px;top:62px;"><div class="s" style="background:var(--blue);"></div><div class="n">Service &amp;<br>Training</div><div class="d">Dispatch</div></div>
+<div class="parked-stash" id="parkedStash">
+  <div class="parked-handle" id="parkedHandle">
+    <span class="parked-grip">&#x2630;</span>
+    <span class="parked-label">Parked &middot; Growth Levels &mdash; drag handle</span>
+    <span class="parked-controls">
+      <button type="button" onclick="parkedZoom(-0.1)" title="Shrink">&minus;</button>
+      <button type="button" onclick="parkedZoom(0.1)" title="Expand">+</button>
+      <button type="button" onclick="parkedReset()" title="Reset position &amp; size">&#x21bb;</button>
+    </span>
+  </div>
+  <div class="parked-cells">
+    <div class="c parked-c"><div class="s" style="background:var(--green);"></div><div class="n">L2<br>Contractor</div><div class="d">$10K&ndash;$250K</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--yellow);"></div><div class="n">L3<br>Dealer</div><div class="d">$250K&ndash;$500K</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--yellow);"></div><div class="n">L4<br>Dealer Pro</div><div class="d">$500K&ndash;$750K</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--yellow);"></div><div class="n">L5<br>Certified</div><div class="d">$750K&ndash;$1.25M</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--red);"></div><div class="n">L6 Expert<br>Dealership</div><div class="d">$1.25M+ (3yr)<br>Go Red</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--red);"></div><div class="n">Multiple<br>Profit Centers</div><div class="d">Clone the<br>System</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--blue);"></div><div class="n">L7 Retail<br>Hub</div><div class="d">$1M+/yr (5yr)</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--blue);"></div><div class="n">Showroom<br>&amp; Rentals</div><div class="d">CP Floors</div></div>
+    <div class="c parked-c"><div class="s" style="background:var(--blue);"></div><div class="n">Service &amp;<br>Training</div><div class="d">Dispatch</div></div>
   </div>
 </div>
 
@@ -1333,7 +1347,7 @@ function switchTab(tab) {
   } catch(ex) {}
 
   // Bind to both zones
-  ['dragZone','bottomZone','seatsZone','systemsZone','ippZone','freedomsZone','mantraZone','principlesZone','valuesZone','linesZone','icSideZone','parkedZone'].forEach(zid => {
+  ['dragZone','bottomZone','seatsZone','systemsZone','ippZone','freedomsZone','mantraZone','principlesZone','valuesZone','linesZone','icSideZone'].forEach(zid => {
     const z = document.getElementById(zid);
     if (!z) return;
     z.addEventListener('mousedown', onStart);
@@ -1343,6 +1357,74 @@ function switchTab(tab) {
   document.addEventListener('mouseup', onEnd);
   document.addEventListener('touchmove', onMove, { passive: false });
   document.addEventListener('touchend', onEnd);
+})();
+
+/* ===== PARKED STASH: group drag + zoom ===== */
+(function() {
+  const STASH_KEY = 'parkedStashState';
+  const stash  = document.getElementById('parkedStash');
+  const handle = document.getElementById('parkedHandle');
+  if (!stash || !handle) return;
+
+  let state = { tx:0, ty:0, scale:1 };
+  try {
+    const saved = JSON.parse(localStorage.getItem(STASH_KEY) || 'null');
+    if (saved && typeof saved.tx === 'number') state = saved;
+  } catch (ex) {}
+
+  function apply() {
+    stash.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+  }
+  function persist() {
+    try { localStorage.setItem(STASH_KEY, JSON.stringify(state)); } catch (ex) {}
+  }
+  apply();
+
+  // Drag the whole stash by its handle
+  let active = false, startX = 0, startY = 0, origX = 0, origY = 0;
+  function onStart(e) {
+    if (e.target.closest('button')) return;          // controls click-through
+    e.preventDefault();
+    active = true;
+    stash.classList.add('dragging');
+    const pt = e.touches ? e.touches[0] : e;
+    startX = pt.clientX;
+    startY = pt.clientY;
+    origX = state.tx;
+    origY = state.ty;
+  }
+  function onMove(e) {
+    if (!active) return;
+    e.preventDefault();
+    const pt = e.touches ? e.touches[0] : e;
+    state.tx = origX + (pt.clientX - startX);
+    state.ty = origY + (pt.clientY - startY);
+    apply();
+  }
+  function onEnd() {
+    if (!active) return;
+    active = false;
+    stash.classList.remove('dragging');
+    persist();
+  }
+  handle.addEventListener('mousedown', onStart);
+  handle.addEventListener('touchstart', onStart, { passive: false });
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onEnd);
+  document.addEventListener('touchmove', onMove, { passive: false });
+  document.addEventListener('touchend', onEnd);
+
+  // Zoom (shrink / expand)
+  window.parkedZoom = function(delta) {
+    state.scale = Math.max(0.4, Math.min(2.0, state.scale + delta));
+    apply();
+    persist();
+  };
+  window.parkedReset = function() {
+    state = { tx:0, ty:0, scale:1 };
+    apply();
+    persist();
+  };
 })();
 </script>
 </body>
