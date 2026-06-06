@@ -439,98 +439,21 @@ body {
 .footer { text-align:center; padding:24px 20px; font-size:9px; color:#b0a99a; border-top:1px solid rgba(0,0,0,0.06); margin-top:40px; font-family:'JetBrains Mono',monospace; background:rgba(255,255,255,0.3); }
 .footer .brands { font-size:8px; letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; color:#c0b9aa; }
 
-/* ===== LAYER 2: INNER BOARD (L2 Growth Path lap) ===== */
+/* ===== LAYER 2: INNER BOARD (11x11, same shape as outer) ===== */
 .layer2-wrap { display:flex; flex-direction:column; align-items:center; padding:32px 12px 24px; max-width:980px; margin:0 auto; }
 .layer2-intro { text-align:center; max-width:720px; font-family:'DM Sans',sans-serif; color:#666; margin-bottom:18px; line-height:1.55; font-size:12px; }
 .layer2-intro strong { color:var(--dark); font-weight:800; }
 
-/* Lap selector (matches outer tab style) */
-.lap-bar { display:flex; align-items:center; justify-content:center; gap:4px; flex-wrap:wrap; padding:0; margin-bottom:10px; }
-.lap-bar .lap-prompt { color:#999; font-size:8.5px; letter-spacing:2px; text-transform:uppercase; margin-right:10px; font-family:'JetBrains Mono',monospace; }
-.lap-btn { background:transparent; color:var(--dark); border:1px solid rgba(0,0,0,0.15); padding:5px 12px; font-size:11px; font-weight:600; font-family:'DM Sans',sans-serif; border-radius:6px; cursor:pointer; transition:all 0.18s; letter-spacing:0.3px; }
-.lap-btn:hover { background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.3); }
-.lap-btn.active { background:var(--dark); color:#fff; border-color:var(--dark); box-shadow:0 2px 6px rgba(15,15,35,0.25); }
-.lap-targets { background:transparent; padding:6px 0 14px; margin:0 auto 16px; font-family:'JetBrains Mono',monospace; font-size:10px; color:#666; text-align:center; letter-spacing:0.5px; max-width:720px; border-bottom:1px solid rgba(0,0,0,0.06); }
-.lap-targets strong { color:var(--gold); }
-.lap-targets .lt-label { font-size:8.5px; color:#999; letter-spacing:2px; text-transform:uppercase; margin-right:6px; }
-
-/* Inner board frame + grid (5x5 with corners + 12 stations) */
+/* Same grid as outer .board (literal cell value: 58px, gap:2px) */
 .inner-board-outer { display:flex; flex-direction:column; align-items:center; margin:0 auto 18px; padding:0; }
-.inner-board-frame { background:linear-gradient(145deg,#12122a,#1e1e3a); padding:8px; border-radius:var(--radius-lg); box-shadow:var(--shadow-xl),0 0 0 1px rgba(255,255,255,0.05),inset 0 1px 0 rgba(255,255,255,0.08); position:relative; }
-.inner-board { display:grid; grid-template-columns:repeat(5, 92px); grid-template-rows:repeat(5, 92px); gap:3px; background:rgba(240,237,230,0.95); border-radius:var(--radius-md); position:relative; }
+.inner-board-frame { background:linear-gradient(145deg,#12122a,#1e1e3a); padding:6px; border-radius:var(--radius-lg); box-shadow:var(--shadow-xl),0 0 0 1px rgba(255,255,255,0.05),inset 0 1px 0 rgba(255,255,255,0.08); position:relative; }
+.inner-board { display:grid; grid-template-columns:repeat(11, 58px); grid-template-rows:repeat(11, 58px); gap:2px; background:rgba(240,237,230,0.95); border-radius:var(--radius-md); position:relative; }
 
-/* Station cells */
-.is { background:#faf8f4; position:relative; overflow:hidden; transition:transform 0.18s, box-shadow 0.18s; border:1px solid rgba(0,0,0,0.06); cursor:pointer; display:flex; flex-direction:column; padding:6px 5px 5px; }
-.is:hover { z-index:2; transform:scale(1.05); box-shadow:0 6px 18px rgba(0,0,0,0.22); border-color:transparent; }
-.is .is-band { height:8px; width:100%; position:absolute; top:0; left:0; }
-.is .is-num { font-family:'Playfair Display',serif; font-size:8.5px; font-weight:900; color:#999; letter-spacing:0.5px; margin-top:6px; }
-.is .is-name { font-family:'Playfair Display',serif; font-size:10.5px; font-weight:900; color:var(--dark); line-height:1.15; margin-top:2px; letter-spacing:0.2px; }
-.is .is-target { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gold); margin-top:auto; font-weight:700; letter-spacing:0.3px; }
-.is.s-orange .is-band { background:var(--find); }
-.is.s-green  .is-band { background:var(--green); }
-.is.s-yellow .is-band { background:var(--yellow); }
-.is.s-red    .is-band { background:var(--red); }
-
-/* Inner board corners (lap markers) */
-.icnr { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6px; border-radius:6px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.18); border:none; cursor:default; }
-.icnr .icnr-tag { font-family:'Playfair Display',serif; font-size:11px; font-weight:900; letter-spacing:1px; line-height:1; color:#fff; }
-.icnr .icnr-sub { font-size:6.5px; opacity:0.8; margin-top:4px; letter-spacing:1px; text-transform:uppercase; color:#fff; }
-.icnr.go        { background:linear-gradient(135deg,#b8651a,var(--find)); }
-.icnr.l2-start  { background:linear-gradient(135deg,#1b8745,var(--green)); }
-.icnr.l4-cert   { background:linear-gradient(135deg,#b8960c,var(--yellow)); }
-.icnr.l4-cert .icnr-tag, .icnr.l4-cert .icnr-sub { color:var(--dark); }
-.icnr.l5-ready  { background:linear-gradient(135deg,#7a1f15,var(--red)); }
-
-/* Player piece marker */
-.player-piece { position:absolute; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle at 30% 30%,#fff 0%, var(--gold) 100%); border:2px solid var(--dark); box-shadow:0 2px 6px rgba(0,0,0,0.35); z-index:10; pointer-events:none; transition:left 0.35s cubic-bezier(0.4,0,0.2,1), top 0.35s cubic-bezier(0.4,0,0.2,1); }
-
-.inner-board-caption { font-family:'JetBrains Mono',monospace; font-size:9px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-top:8px; text-align:center; }
-
-/* Proven-process bullet strip */
-.pp-strip { background:transparent; border-top:1px solid rgba(0,0,0,0.08); border-bottom:1px solid rgba(0,0,0,0.08); padding:14px 4px; max-width:760px; width:100%; margin:18px auto 8px; }
-.pp-strip-title { font-family:'Playfair Display',serif; font-size:11px; font-weight:900; color:var(--dark); letter-spacing:2px; text-transform:uppercase; text-align:center; margin-bottom:10px; }
-.pp-bullets { display:flex; flex-direction:column; gap:5px; }
-.pp-bullet { display:flex; gap:10px; align-items:flex-start; font-size:11px; color:var(--dark); line-height:1.4; }
-.pp-bullet .pp-when { font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; color:var(--gold); min-width:88px; letter-spacing:0.5px; padding-top:1px; }
-.pp-bullet .pp-do { color:#333; }
-
-/* Fork display at L5 (matches section-head style) */
-.fork-bar { display:none; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; padding:10px 14px; margin:10px auto 0; max-width:720px; border-top:1px dashed rgba(192,57,43,0.4); border-bottom:1px dashed rgba(192,57,43,0.4); }
-.fork-bar.visible { display:flex; }
-.fork-bar .fork-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-right:6px; }
-.fork-opt { background:transparent; border:1px solid var(--red); color:var(--red); padding:5px 12px; border-radius:6px; font-size:10.5px; font-weight:700; cursor:pointer; transition:all 0.15s; letter-spacing:0.3px; }
-.fork-opt:hover { background:var(--red); color:#fff; }
-.fork-opt strong { color:inherit; }
-
-/* Station card modal (matches existing deed modal style) */
-.station-modal { position:fixed; inset:0; background:rgba(15,15,35,0.7); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; z-index:2100; padding:20px; animation:fadeIn 0.2s ease; }
-.station-modal.open { display:flex; }
-.station-card { width:320px; max-width:100%; background:#fff; border-radius:8px; box-shadow:0 24px 64px rgba(0,0,0,0.45); overflow:hidden; font-family:'DM Sans',sans-serif; transform:scale(0.95); animation:deedPop 0.25s cubic-bezier(0.34,1.56,0.64,1) forwards; position:relative; }
-.station-card .sc-top { padding:14px 16px 12px; color:#fff; text-align:center; position:relative; }
-.station-card .sc-eyebrow { font-size:8px; letter-spacing:3px; text-transform:uppercase; opacity:0.85; }
-.station-card .sc-name { font-family:'Playfair Display',serif; font-size:19px; font-weight:900; letter-spacing:1px; margin-top:5px; line-height:1.1; }
-.station-card .sc-target { font-family:'JetBrains Mono',monospace; font-size:10.5px; opacity:0.92; margin-top:6px; letter-spacing:0.5px; }
-.station-card.s-orange .sc-top { background:var(--find); }
-.station-card.s-green  .sc-top { background:var(--green); }
-.station-card.s-yellow .sc-top { background:var(--yellow); color:var(--dark); }
-.station-card.s-red    .sc-top { background:var(--red); }
-.station-card .sc-body { padding:12px 18px 8px; }
-.station-card .sc-row { display:flex; gap:10px; font-size:11.5px; padding:6px 0; border-bottom:1px dotted rgba(0,0,0,0.08); line-height:1.4; }
-.station-card .sc-row:last-of-type { border-bottom:none; }
-.station-card .sc-verb { font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; min-width:72px; padding-top:2px; }
-.station-card .sc-text { color:#333; flex:1; }
-.station-card .sc-value { padding:9px 18px; background:rgba(0,0,0,0.03); border-top:1px solid rgba(0,0,0,0.08); border-bottom:1px solid rgba(0,0,0,0.08); }
-.station-card .sc-value-label { font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:700; color:var(--dark); letter-spacing:2px; text-transform:uppercase; margin-bottom:3px; }
-.station-card .sc-value-text { font-size:11.5px; color:var(--dark); font-weight:600; line-height:1.4; }
-.station-card .sc-mat { padding:10px 18px 14px; }
-.station-card .sc-mat-label { font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:700; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:7px; text-align:center; }
-.station-card .sc-mat-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px 10px; font-size:10px; color:#333; line-height:1.35; }
-.station-card .sc-mat-item { display:flex; gap:5px; }
-.station-card .sc-mat-item .sc-mat-num { font-weight:800; color:var(--dark); min-width:42px; }
-.station-card-close { position:absolute; top:8px; right:10px; width:26px; height:26px; border:none; border-radius:50%; background:rgba(255,255,255,0.25); color:#fff; font-size:18px; cursor:pointer; line-height:1; display:flex; align-items:center; justify-content:center; transition:background 0.15s; }
-.station-card-close:hover { background:rgba(255,255,255,0.5); }
-.station-card.s-yellow .station-card-close { background:rgba(0,0,0,0.18); color:var(--dark); }
-.station-card.s-yellow .station-card-close:hover { background:rgba(0,0,0,0.32); }
+/* Blank perimeter cells: visible colored stripe, not interactive */
+.inner-board .c.blank { cursor:default; }
+.inner-board .c.blank:hover { transform:none; box-shadow:none; border-color:rgba(0,0,0,0.06); }
+/* Inner station cell labels use the same .n / .d typography as outer cells */
+.inner-board-caption { font-family:'JetBrains Mono',monospace; font-size:9px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-top:10px; text-align:center; }
 
 /* ===== PARKED STASH (off-board cells) ===== */
 .parked-stash { max-width:960px; margin:16px auto 0; padding:0; background:rgba(255,255,255,0.55); border:1.5px dashed rgba(0,0,0,0.18); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); transform-origin:top left; transition:box-shadow 0.18s; position:relative; }
@@ -943,107 +866,74 @@ body {
 </div>
 </div></div>
 
-<!-- ==================== LAYER 2 TAB: INNER BOARD (L2 Growth Path lap) ==================== -->
+<!-- ==================== LAYER 2 TAB: INNER BOARD (11x11, mirrors outer) ==================== -->
 <div id="tab-layer2" class="tab-content">
 <div class="layer2-wrap">
 
   <div class="layer2-intro">
-    The <strong>L2 Growth Path lap</strong>. After the outer Proven Process, you&rsquo;re a Client growing a real business. <strong>One trip around the board = one growth level</strong> (L2 &rarr; L3 &rarr; L4 &rarr; L5 + fork). Same 12 stations every lap &mdash; only the targets escalate.
+    The <strong>L2 Growth Path</strong> as an inner board. Same 11&times;11 grid, same shape as the outer Level 1 board. Four corners mark lap milestones. <strong>Click any colored station</strong> to open its title deed.
   </div>
 
-  <!-- Lap selector -->
-  <div class="lap-bar">
-    <span class="lap-prompt">Lap</span>
-    <button type="button" class="lap-btn active" data-lap="L2" onclick="setLap('L2')">L2 Contractor</button>
-    <button type="button" class="lap-btn"        data-lap="L3" onclick="setLap('L3')">L3 Dealer</button>
-    <button type="button" class="lap-btn"        data-lap="L4" onclick="setLap('L4')">L4 Dealer Pro</button>
-    <button type="button" class="lap-btn"        data-lap="L5" onclick="setLap('L5')">L5 Certified</button>
-  </div>
-
-  <!-- Targets display for current lap -->
-  <div class="lap-targets" id="lapTargets">
-    <span class="lt-label">Targets</span><span id="lapTargetsText">$50K &middot; $100K &middot; $150K &middot; $200K &middot; <strong>$250K</strong></span>
-  </div>
-
-  <!-- Fork bar (only at L5) -->
-  <div class="fork-bar" id="forkBar">
-    <span class="fork-label">L5 Fork</span>
-    <div class="fork-opt" onclick="alert('Stay at L5 - hold the level, refine the operation.')"><strong>Stay</strong> at L5</div>
-    <div class="fork-opt" onclick="alert('L6 Clone - clone and multiply the system.')"><strong>L6</strong> Clone</div>
-    <div class="fork-opt" onclick="alert('L7 Supply Hub - become a regional supply hub.')"><strong>L7</strong> Supply Hub</div>
-    <div class="fork-opt"><strong>ICC</strong> eligible</div>
-  </div>
-
-  <!-- Inner board: 5x5 grid with 4 corners + 12 stations -->
   <div class="inner-board-outer">
   <div class="inner-board-frame">
   <div class="inner-board" id="innerBoardGrid">
 
-    <!-- TOP ROW: row 1 -->
-    <div class="icnr l4-cert" style="grid-row:1;grid-column:1;"><div class="icnr-tag">L4</div><div class="icnr-sub">Cert</div></div>
-    <div class="is s-yellow" data-station="7" data-pos="0" onclick="openStation(7)"><div class="is-band"></div><div class="is-num">07 &middot; Pulse</div><div class="is-name">The Scoreboard</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-yellow" data-station="8" data-pos="1" onclick="openStation(8)"><div class="is-band"></div><div class="is-num">08 &middot; Pulse</div><div class="is-name">Keep Leads<br>Coming</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-yellow" data-station="9" data-pos="2" onclick="openStation(9)"><div class="is-band"></div><div class="is-num">09 &middot; Pulse</div><div class="is-name">Quarterly Pulse</div><div class="is-target" data-target-cell></div></div>
-    <div class="icnr l5-ready" style="grid-row:1;grid-column:5;"><div class="icnr-tag">L5</div><div class="icnr-sub">Ready</div></div>
+    <!-- ===== TR / TL / BL / BR corners (non-clickable labels) ===== -->
+    <div class="c cn" style="grid-row:1;grid-column:1;background:linear-gradient(135deg,#b8960c,var(--yellow));"><div class="n" style="color:var(--dark);">L4 CERT</div><div class="d" style="color:rgba(0,0,0,0.55);">Corner</div></div>
+    <div class="c cn" style="grid-row:1;grid-column:11;background:linear-gradient(135deg,#7a1f15,var(--red));"><div class="n">L5 READY</div><div class="d">Corner</div></div>
+    <div class="c cn" style="grid-row:11;grid-column:1;background:linear-gradient(135deg,#1b8745,var(--green));"><div class="n">L2 START</div><div class="d">Corner</div></div>
+    <div class="c cn" style="grid-row:11;grid-column:11;background:linear-gradient(135deg,#b8651a,var(--find));"><div class="n">GO</div><div class="d">New Lap</div></div>
 
-    <!-- LEFT COL (rows 2-4) Execute / Green - reads bottom-to-top -->
-    <div class="is s-green" data-station="6" data-pos="3" style="grid-row:2;grid-column:1;" onclick="openStation(6)"><div class="is-band"></div><div class="is-num">06 &middot; Execute</div><div class="is-name">Run the Jobs</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-green" data-station="5" data-pos="4" style="grid-row:3;grid-column:1;" onclick="openStation(5)"><div class="is-band"></div><div class="is-num">05 &middot; Execute</div><div class="is-name">Gear Up</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-green" data-station="4" data-pos="5" style="grid-row:4;grid-column:1;" onclick="openStation(4)"><div class="is-band"></div><div class="is-num">04 &middot; Execute</div><div class="is-name">Build the Crew</div><div class="is-target" data-target-cell></div></div>
+    <!-- ===== TOP ROW (row 1) YELLOW / Pulse: cols 2-10, stations at pos 22/25/28 (cols 3, 6, 9) ===== -->
+    <div class="c blank" style="grid-row:1;grid-column:2;"><div class="s" style="background:var(--yellow);"></div></div>
+    <div class="c" data-station="scoreboard" style="grid-row:1;grid-column:3;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">The<br>Scoreboard</div><div class="d">Pulse</div></div>
+    <div class="c blank" style="grid-row:1;grid-column:4;"><div class="s" style="background:var(--yellow);"></div></div>
+    <div class="c blank" style="grid-row:1;grid-column:5;"><div class="s" style="background:var(--yellow);"></div></div>
+    <div class="c" data-station="leads" style="grid-row:1;grid-column:6;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">Keep Leads<br>Coming</div><div class="d">Pulse</div></div>
+    <div class="c blank" style="grid-row:1;grid-column:7;"><div class="s" style="background:var(--yellow);"></div></div>
+    <div class="c blank" style="grid-row:1;grid-column:8;"><div class="s" style="background:var(--yellow);"></div></div>
+    <div class="c" data-station="pulse" style="grid-row:1;grid-column:9;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">Quarterly<br>Pulse</div><div class="d">Pulse</div></div>
+    <div class="c blank" style="grid-row:1;grid-column:10;"><div class="s" style="background:var(--yellow);"></div></div>
 
-    <!-- RIGHT COL (rows 2-4) Thrive / Red - reads top-to-bottom -->
-    <div class="is s-red" data-station="10" data-pos="6" style="grid-row:2;grid-column:5;" onclick="openStation(10)"><div class="is-band"></div><div class="is-num">10 &middot; Thrive</div><div class="is-name">Hit the Band</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-red" data-station="11" data-pos="7" style="grid-row:3;grid-column:5;" onclick="openStation(11)"><div class="is-band"></div><div class="is-num">11 &middot; Thrive</div><div class="is-name">Bank the Profit</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-red" data-station="12" data-pos="8" style="grid-row:4;grid-column:5;" onclick="openStation(12)"><div class="is-band"></div><div class="is-num">12 &middot; Thrive</div><div class="is-name">Level Up</div><div class="is-target" data-target-cell></div></div>
+    <!-- ===== LEFT COL (col 1) GREEN / Execute: rows 2-10, stations at pos 12/15/18 (rows 9, 6, 3) ===== -->
+    <div class="c blank" style="grid-row:2;grid-column:1;"><div class="s" style="background:var(--green);"></div></div>
+    <div class="c" data-station="jobs" style="grid-row:3;grid-column:1;"><div class="s" style="background:var(--green);"></div><div class="n">Run the<br>Jobs</div><div class="d">Execute</div></div>
+    <div class="c blank" style="grid-row:4;grid-column:1;"><div class="s" style="background:var(--green);"></div></div>
+    <div class="c blank" style="grid-row:5;grid-column:1;"><div class="s" style="background:var(--green);"></div></div>
+    <div class="c" data-station="gear" style="grid-row:6;grid-column:1;"><div class="s" style="background:var(--green);"></div><div class="n">Gear Up</div><div class="d">Execute</div></div>
+    <div class="c blank" style="grid-row:7;grid-column:1;"><div class="s" style="background:var(--green);"></div></div>
+    <div class="c blank" style="grid-row:8;grid-column:1;"><div class="s" style="background:var(--green);"></div></div>
+    <div class="c" data-station="crew" style="grid-row:9;grid-column:1;"><div class="s" style="background:var(--green);"></div><div class="n">Build the<br>Crew</div><div class="d">Execute</div></div>
+    <div class="c blank" style="grid-row:10;grid-column:1;"><div class="s" style="background:var(--green);"></div></div>
 
-    <!-- BOTTOM ROW: row 5 -->
-    <div class="icnr l2-start" style="grid-row:5;grid-column:1;"><div class="icnr-tag">L2</div><div class="icnr-sub">Start</div></div>
-    <div class="is s-orange" data-station="3" data-pos="9" onclick="openStation(3)"><div class="is-band"></div><div class="is-num">03 &middot; Strategy</div><div class="is-name">Price for Profit</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-orange" data-station="2" data-pos="10" onclick="openStation(2)"><div class="is-band"></div><div class="is-num">02 &middot; Strategy</div><div class="is-name">Pick Your Lane</div><div class="is-target" data-target-cell></div></div>
-    <div class="is s-orange" data-station="1" data-pos="11" onclick="openStation(1)"><div class="is-band"></div><div class="is-num">01 &middot; Strategy</div><div class="is-name">Set the Target</div><div class="is-target" data-target-cell></div></div>
-    <div class="icnr go" style="grid-row:5;grid-column:5;"><div class="icnr-tag">GO</div><div class="icnr-sub">New Lap</div></div>
+    <!-- ===== RIGHT COL (col 11) RED / Thrive: rows 2-10, stations at pos 32/35/38 (rows 3, 6, 9) ===== -->
+    <div class="c blank" style="grid-row:2;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
+    <div class="c" data-station="band" style="grid-row:3;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">Hit the<br>Band</div><div class="d">Thrive</div></div>
+    <div class="c blank" style="grid-row:4;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
+    <div class="c blank" style="grid-row:5;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
+    <div class="c" data-station="profit" style="grid-row:6;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">Bank the<br>Profit</div><div class="d">Thrive</div></div>
+    <div class="c blank" style="grid-row:7;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
+    <div class="c blank" style="grid-row:8;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
+    <div class="c" data-station="levelup" style="grid-row:9;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">Level Up</div><div class="d">Thrive</div></div>
+    <div class="c blank" style="grid-row:10;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
 
-    <!-- Player piece marker -->
-    <div class="player-piece" id="playerPiece"></div>
+    <!-- ===== BOTTOM ROW (row 11) ORANGE / Strategy: cols 2-10, stations at pos 2/5/8 (cols 9, 6, 3) ===== -->
+    <div class="c blank" style="grid-row:11;grid-column:2;"><div class="s" style="background:var(--find);"></div></div>
+    <div class="c" data-station="price" style="grid-row:11;grid-column:3;"><div class="s" style="background:var(--find);"></div><div class="n">Price for<br>Profit</div><div class="d">Strategy</div></div>
+    <div class="c blank" style="grid-row:11;grid-column:4;"><div class="s" style="background:var(--find);"></div></div>
+    <div class="c blank" style="grid-row:11;grid-column:5;"><div class="s" style="background:var(--find);"></div></div>
+    <div class="c" data-station="lane" style="grid-row:11;grid-column:6;"><div class="s" style="background:var(--find);"></div><div class="n">Pick Your<br>Lane</div><div class="d">Strategy</div></div>
+    <div class="c blank" style="grid-row:11;grid-column:7;"><div class="s" style="background:var(--find);"></div></div>
+    <div class="c blank" style="grid-row:11;grid-column:8;"><div class="s" style="background:var(--find);"></div></div>
+    <div class="c" data-station="target" style="grid-row:11;grid-column:9;"><div class="s" style="background:var(--find);"></div><div class="n">Set the<br>Target</div><div class="d">Strategy</div></div>
+    <div class="c blank" style="grid-row:11;grid-column:10;"><div class="s" style="background:var(--find);"></div></div>
 
   </div><!-- end .inner-board -->
   </div><!-- end .inner-board-frame -->
-  <div class="inner-board-caption">12 stations &middot; same loop every lap &middot; targets escalate L2 &rarr; L3 &rarr; L4 &rarr; L5</div>
+  <div class="inner-board-caption">11&times;11 grid &middot; 4 corners + 12 stations + 24 blanks &middot; click a station for its title deed</div>
   </div><!-- end .inner-board-outer -->
 
-  <!-- Proven-process bullet strip for the current lap -->
-  <div class="pp-strip" id="ppStrip">
-    <div class="pp-strip-title">L2 Proven Process &middot; What &amp; When</div>
-    <div class="pp-bullets" id="ppBullets"></div>
-  </div>
-
 </div>
-</div>
-
-<!-- ==================== STATION CARD MODAL ==================== -->
-<div class="station-modal" id="stationModal" onclick="if(event.target.id==='stationModal')closeStation()">
-  <div class="station-card" id="stationCard">
-    <button type="button" class="station-card-close" onclick="closeStation()" aria-label="Close">&times;</button>
-    <div class="sc-top">
-      <div class="sc-eyebrow" id="sc-eyebrow">Strategy &middot; Orange</div>
-      <div class="sc-name" id="sc-name">Station Name</div>
-      <div class="sc-target" id="sc-target">L2 Target: $0</div>
-    </div>
-    <div class="sc-body">
-      <div class="sc-row"><div class="sc-verb">Discover</div><div class="sc-text" id="sc-discover">--</div></div>
-      <div class="sc-row"><div class="sc-verb">Train</div><div class="sc-text" id="sc-train">--</div></div>
-      <div class="sc-row"><div class="sc-verb">Learn</div><div class="sc-text" id="sc-learn">--</div></div>
-      <div class="sc-row"><div class="sc-verb">Automate</div><div class="sc-text" id="sc-automate">--</div></div>
-    </div>
-    <div class="sc-value">
-      <div class="sc-value-label">Value</div>
-      <div class="sc-value-text" id="sc-value">--</div>
-    </div>
-    <div class="sc-mat">
-      <div class="sc-mat-label">Maturity &middot; House &rarr; Hotel</div>
-      <div class="sc-mat-grid" id="sc-mat-grid"></div>
-    </div>
-  </div>
 </div>
 
 <!-- ==================== LINES TAB ==================== -->
@@ -1479,6 +1369,9 @@ body {
     const cell = e.target.closest('.c');
     if (!cell) return;
     if (cell.classList.contains('wm') || cell.classList.contains('int') || cell.classList.contains('e') || cell.classList.contains('luxor-cell')) return;
+    if (cell.classList.contains('blank')) return;
+    // Inner-board cells have their own dedicated handler (openInnerDeed) — skip here
+    if (cell.closest('#tab-layer2')) return;
     // Skip if user clicked inside an interactive child (like the EXIT toggle pattern)
     if (e.target.closest('button, input, select, a')) return;
     openDeed(cell);
@@ -1657,256 +1550,139 @@ function switchTab(tab) {
   };
 })();
 
-/* ===== LAYER 2: INNER BOARD (laps, stations, bullets) ===== */
+/* ===== LAYER 2 / INNER BOARD — per C-6-07-TCP v2-0 spec =====
+ * 11x11 grid mirrors outer board (literal cells: 58px, gap 2px).
+ * 12 station cells (.c with data-station) + 4 .c.cn corners + 24 .c.blank.
+ * Station click → existing #deedModal populated from innerStations.
+ * OUT OF SCOPE (do NOT add back): laps, target escalation, bullet strip,
+ *   player piece, fork bar, station-card modal, animations. */
 (function() {
-  const innerBoard = {
-    laps: [
-      { level:'L2', name:'Contractor', targets:[50000,100000,150000,200000,250000] },
-      { level:'L3', name:'Dealer',     targets:[300000,400000,500000] },
-      { level:'L4', name:'Dealer Pro', targets:[550000,650000,750000] },
-      { level:'L5', name:'Certified',  targets:[850000,1050000,1250000] }
-    ],
-    stations: [
-      // Orange / Strategy
-      { n:1, side:'orange', era:'Strategy', name:'Set the Target',
-        discover:"This lap's revenue goal.",
-        train:"How to set a real target, not a wish.",
-        learn:"What hitting it takes (jobs * average ticket).",
-        automate:"Target + plan tracked in I-BOS.",
-        value:"The whole lap aims at one number.",
-        mat:["Target set","Plan written","Quarterly milestones","Auto-tracked vs actuals (hotel)"] },
-      { n:2, side:'orange', era:'Strategy', name:'Pick Your Lane',
-        discover:"Which services & markets get you there.",
-        train:"The offers that sell in your area.",
-        learn:"Your demographics & geography.",
-        automate:"Offer sheet + go-to-market plan.",
-        value:"Focus - stop chasing every job.",
-        mat:["Lane chosen","Offer tested","Niche owned","Repeatable offer engine (hotel)"] },
-      { n:3, side:'orange', era:'Strategy', name:'Price for Profit',
-        discover:"What your jobs should actually cost.",
-        train:"The Getting-What-You-Want pricing calculator.",
-        learn:"Your true margin (labor, materials, overhead).",
-        automate:"Quoting in I-BOS.",
-        value:"Recovered margin on every job.",
-        mat:["Priced jobs","Margins tracked","Quote templates","Automated quoting (hotel)"] },
-      // Green / Execute
-      { n:4, side:'green', era:'Execute', name:'Build the Crew',
-        discover:"Who you hire next.",
-        train:"Certify your first / next team member (DCU).",
-        learn:"Leading a small team.",
-        automate:"Onboarding path in DCU.",
-        value:"Capacity to take more work.",
-        mat:["First hire","Crew of 2","Trained backups","Self-running crew (hotel)"] },
-      { n:5, side:'green', era:'Execute', name:'Gear Up',
-        discover:"The equipment bigger jobs need.",
-        train:"Equipment mastery (Warrior).",
-        learn:"Capacity planning.",
-        automate:"Maintenance & reorder.",
-        value:"Take jobs you couldn't before.",
-        mat:["Core kit","Full lineup","Backups","Full rig + backups (hotel)"] },
-      { n:6, side:'green', era:'Execute', name:'Run the Jobs',
-        discover:"Your real job pipeline.",
-        train:"Consistent quality delivery.",
-        learn:"Scheduling & crew flow.",
-        automate:"Scheduling / dispatch (Jobber under I-BOS).",
-        value:"Filled calendar, repeat & referral work.",
-        mat:["Jobs running","Weekly cadence","Recurring slots","Booked weeks out (hotel)"] },
-      // Yellow / Pulse
-      { n:7, side:'yellow', era:'Pulse', name:'The Scoreboard',
-        discover:"Your real numbers.",
-        train:"How to read the scoreboard.",
-        learn:"What the numbers are telling you.",
-        automate:"Live dashboard in I-BOS.",
-        value:"Decisions on facts, not feelings.",
-        mat:["Numbers tracked","Weekly review","KPI targets","Live dashboard (hotel)"] },
-      { n:8, side:'yellow', era:'Pulse', name:'Keep Leads Coming',
-        discover:"Where your best leads come from.",
-        train:"The marketing engine (I-Market).",
-        learn:"Cost per lead / cost per job.",
-        automate:"Ads + content + nurture.",
-        value:"Pipeline never goes dry.",
-        mat:["Leads flowing","Channel mix","Nurture sequence","Predictable lead machine (hotel)"] },
-      { n:9, side:'yellow', era:'Pulse', name:'Quarterly Pulse',
-        discover:"Did you hit plan?",
-        train:"The quarterly review rhythm (EOS).",
-        learn:"What to adjust next quarter.",
-        automate:"Quarterly report auto-built.",
-        value:"Stay on plan, correct early.",
-        mat:["First review","Rolling 90s","Plan adjustments","Running EOS cadence (hotel)"] },
-      // Red / Thrive
-      { n:10, side:'red', era:'Thrive', name:'Hit the Band',
-        discover:"You reached this level's revenue.",
-        train:"Sustaining the run rate.",
-        learn:"What got you here.",
-        automate:"Milestone tracking.",
-        value:"Proof the level is real.",
-        mat:["Band reached","Held 1 quarter","Held 2 quarters","Held 2+ quarters (hotel)"] },
-      { n:11, side:'red', era:'Thrive', name:'Bank the Profit',
-        discover:"Your actual profit, not just revenue.",
-        train:"Profit-first / Crabtree bands.",
-        learn:"Owner pay, tax, reinvestment.",
-        automate:"Profit allocation.",
-        value:"Keep what you earn.",
-        mat:["Profit banked","Owner pay set","Tax reserved","Healthy profit bands (hotel)"] },
-      { n:12, side:'red', era:'Thrive', name:'Level Up',
-        discover:"Ready for the next lap.",
-        train:"What the next level requires.",
-        learn:"The next target.",
-        automate:"Roll the plan into the next lap.",
-        value:"Advance to a bigger business.",
-        mat:["Leveled up","Next plan written","Next crew sized","At L5: choose the fork (hotel)"] }
-    ],
-    bullets: {
-      L2: [
-        { when:'Day 1',     do:'Set your target & plan' },
-        { when:'Week 2',    do:'Pick your lane, price for profit' },
-        { when:'Month 2',   do:'First crew member certified' },
-        { when:'Month 3',   do:'Scoreboard live' },
-        { when:'Month 6',   do:'Lead engine running' },
-        { when:'Quarterly', do:'Pulse review' },
-        { when:'End of lap',do:'Hit the band -> bank profit -> level up' }
-      ],
-      L3: [
-        { when:'Day 1',     do:'Reset target ($300K - $500K), refresh the plan' },
-        { when:'Week 2',    do:'Sharpen the lane that won at L2' },
-        { when:'Month 2',   do:'Add the next certified crew member' },
-        { when:'Month 3',   do:'Scoreboard adds margin & job-cost detail' },
-        { when:'Month 6',   do:'Lead engine scaled (channel mix locked)' },
-        { when:'Quarterly', do:'Pulse review - check margin, not just revenue' },
-        { when:'End of lap',do:'Hit the $500K band -> bank profit -> L4' }
-      ],
-      L4: [
-        { when:'Day 1',     do:'Reset target ($550K - $750K), pro-grade plan' },
-        { when:'Week 2',    do:'Premium-lane offers + tighter pricing' },
-        { when:'Month 2',   do:'Crew lead / second crew certified' },
-        { when:'Month 3',   do:'Scoreboard adds backlog & forward booking' },
-        { when:'Month 6',   do:'Multi-channel lead engine + nurture' },
-        { when:'Quarterly', do:'Pulse + EOS rocks set quarterly' },
-        { when:'End of lap',do:'$750K band held -> profit banked -> L5' }
-      ],
-      L5: [
-        { when:'Day 1',     do:'Reset target ($850K - $1.25M), Certified plan' },
-        { when:'Week 2',    do:'Lane refined for premium / referral flow' },
-        { when:'Month 2',   do:'Crew at scale; manager layer added' },
-        { when:'Month 3',   do:'Scoreboard tracks profit bands by line' },
-        { when:'Month 6',   do:'Marketing engine compounds (auto + earned)' },
-        { when:'Quarterly', do:'Pulse + annual plan starts forming' },
-        { when:'End of lap',do:'$1.25M band -> bank profit -> CHOOSE THE FORK' }
-      ]
-    }
-  };
+  const innerStations = [
+    // Orange · Strategy (bottom)
+    { id:"target", name:"Set the Target", side:"orange", era:"Strategy", pos:2, status:"draft",
+      rent:"Clarity — the whole lap aims at one number", mortgage:"TBD",
+      h1:"Discover this lap's revenue goal",
+      h2:"Train: set a real target, not a wish",
+      h3:"Learn what hitting it takes (jobs × ticket)",
+      h4:"Quarterly milestones set",
+      hotel:"Automate: target tracked vs actuals in I-BOS" },
+    { id:"lane", name:"Pick Your Lane", side:"orange", era:"Strategy", pos:5, status:"draft",
+      rent:"Focus — stop chasing every job", mortgage:"TBD",
+      h1:"Discover which services & markets get you there",
+      h2:"Train on the offers that sell locally",
+      h3:"Learn your demographics & geography",
+      h4:"Offer sheet locked",
+      hotel:"Automate: repeatable go-to-market offer engine" },
+    { id:"price", name:"Price for Profit", side:"orange", era:"Strategy", pos:8, status:"draft",
+      rent:"Recovered margin on every job", mortgage:"TBD",
+      h1:"Discover what your jobs should actually cost",
+      h2:"Train on the Getting-What-You-Want calculator",
+      h3:"Learn your true margin (labor/materials/overhead)",
+      h4:"Every quote priced right",
+      hotel:"Automate: quoting in I-BOS" },
+    // Green · Execute (left) — Build the Crew is SOURCED
+    { id:"crew", name:"Build the Crew", side:"green", era:"Execute", pos:12, status:"sourced",
+      rent:"Capacity — a business that runs without you", mortgage:"TBD",
+      h1:"Right person, right seat (Ability)",
+      h2:"Trained on the work",
+      h3:"Learning → Capable",
+      h4:"Responsible — owns the outcome",
+      hotel:"Accountable / Unique Ability — runs without you" },
+    { id:"gear", name:"Gear Up", side:"green", era:"Execute", pos:15, status:"draft",
+      rent:"Take jobs you couldn't before", mortgage:"TBD",
+      h1:"Discover the equipment bigger jobs need",
+      h2:"Train: equipment mastery (Warrior)",
+      h3:"Learn capacity planning",
+      h4:"Full rig in service",
+      hotel:"Automate: maintenance & reorder" },
+    { id:"jobs", name:"Run the Jobs", side:"green", era:"Execute", pos:18, status:"draft",
+      rent:"Filled calendar, repeat & referral work", mortgage:"TBD",
+      h1:"Discover your real job pipeline",
+      h2:"Train: consistent quality delivery",
+      h3:"Learn scheduling & crew flow",
+      h4:"Booked weeks out",
+      hotel:"Automate: scheduling/dispatch (Jobber under I-BOS)" },
+    // Yellow · Pulse (top)
+    { id:"scoreboard", name:"The Scoreboard", side:"yellow", era:"Pulse", pos:22, status:"draft",
+      rent:"Decisions on facts, not feelings", mortgage:"TBD",
+      h1:"Discover your real numbers",
+      h2:"Train: how to read the scoreboard",
+      h3:"Learn what the numbers are telling you",
+      h4:"Reviewed weekly",
+      hotel:"Automate: live dashboard in I-BOS" },
+    // SOURCED: Ralph Taylor marketing ladder
+    { id:"leads", name:"Keep Leads Coming", side:"yellow", era:"Pulse", pos:25, status:"sourced",
+      rent:"The phone rings — pipeline never goes dry", mortgage:"TBD",
+      h1:"Grassroots: canvassing + door hangers",
+      h2:"Direct mail: 400-piece postcard campaign",
+      h3:"Paid ads: ~$1,000/mo Facebook",
+      h4:"Funded engine: 10%-of-revenue marketing account, 3-mo reserve",
+      hotel:"Automate: iBOSS — Jobber + website + ad management; leads flow on their own" },
+    { id:"pulse", name:"Quarterly Pulse", side:"yellow", era:"Pulse", pos:28, status:"draft",
+      rent:"Stay on plan, correct early", mortgage:"TBD",
+      h1:"Discover: did you hit plan?",
+      h2:"Train: the quarterly review rhythm (EOS)",
+      h3:"Learn what to adjust next quarter",
+      h4:"Cadence held every quarter",
+      hotel:"Automate: quarterly report auto-built" },
+    // Red · Thrive (right)
+    { id:"band", name:"Hit the Band", side:"red", era:"Thrive", pos:32, status:"draft",
+      rent:"Proof the level is real", mortgage:"TBD",
+      h1:"Discover: you reached this level's revenue",
+      h2:"Train: sustaining the run rate",
+      h3:"Learn what got you here",
+      h4:"Held 2+ quarters",
+      hotel:"Automate: milestone tracking" },
+    { id:"profit", name:"Bank the Profit", side:"red", era:"Thrive", pos:35, status:"draft",
+      rent:"Keep what you earn", mortgage:"TBD",
+      h1:"Discover your actual profit, not just revenue",
+      h2:"Train: profit-first / Crabtree bands",
+      h3:"Learn owner pay, tax, reinvestment",
+      h4:"Healthy profit bands",
+      hotel:"Automate: profit allocation" },
+    { id:"levelup", name:"Level Up", side:"red", era:"Thrive", pos:38, status:"draft",
+      rent:"Advance to a bigger business", mortgage:"TBD",
+      h1:"Discover you're ready for the next lap",
+      h2:"Train: what the next level requires",
+      h3:"Learn the next target",
+      h4:"Plan rolled into next lap",
+      hotel:"At L5: choose the fork — stay / clone (L6) / supply hub (L7)" }
+  ];
 
-  const SIDE_LABEL = { orange:'Strategy', green:'Execute', yellow:'Pulse', red:'Thrive' };
+  const SIDE_FAMILY = { orange:'c-orange', green:'c-green', yellow:'c-yellow', red:'c-red' };
 
-  function fmt(n) {
-    if (n >= 1000000) return '$' + (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 2) + 'M';
-    if (n >= 1000)    return '$' + Math.round(n / 1000) + 'K';
-    return '$' + n;
+  function openInnerDeed(stationId) {
+    const s = innerStations.find(x => x.id === stationId);
+    if (!s) return;
+    const card = document.getElementById('deedCard');
+    card.className = 'deed ' + (SIDE_FAMILY[s.side] || 'c-cream');
+    document.getElementById('deed-name').textContent     = s.name;
+    document.getElementById('deed-sub').textContent      = s.era + ' · ' + s.side.charAt(0).toUpperCase() + s.side.slice(1);
+    document.getElementById('deed-rent').textContent     = s.rent;
+    document.getElementById('deed-h1').textContent       = s.h1;
+    document.getElementById('deed-h2').textContent       = s.h2;
+    document.getElementById('deed-h3').textContent       = s.h3;
+    document.getElementById('deed-h4').textContent       = s.h4;
+    document.getElementById('deed-hotel').textContent    = s.hotel;
+    document.getElementById('deed-mort').textContent     = s.mortgage;
+    document.getElementById('deed-housecost').textContent = (s.status === 'sourced') ? 'Sourced' : 'Draft';
+    document.getElementById('deed-note').textContent     = (s.status === 'sourced')
+      ? 'Layer 2 · L2 Growth Path · sourced from TCP docs.'
+      : 'Layer 2 · L2 Growth Path · draft wording, pending review.';
+    document.getElementById('deedModal').classList.add('open');
   }
+  window.openInnerDeed = openInnerDeed;
 
-  let currentLap = 'L2';
-
-  function lapData(level) {
-    return innerBoard.laps.find(l => l.level === level) || innerBoard.laps[0];
-  }
-
-  function stationTargetForLap(stationN, level) {
-    const lap = lapData(level);
-    // Map station number 1..12 to a target index by lap. We just cycle through the lap's targets.
-    return lap.targets[(stationN - 1) % lap.targets.length];
-  }
-
-  function renderTargetsLine(level) {
-    const lap = lapData(level);
-    const parts = lap.targets.map((t, i) => {
-      const text = fmt(t);
-      return (i === lap.targets.length - 1) ? `<strong>${text}</strong>` : text;
-    });
-    document.getElementById('lapTargetsText').innerHTML = parts.join(' &middot; ');
-  }
-
-  function renderCellTargets(level) {
-    const lap = lapData(level);
-    document.querySelectorAll('.is').forEach(cell => {
-      const n = parseInt(cell.dataset.station, 10);
-      if (!n) return;
-      const idx = (n - 1) % lap.targets.length;
-      const t = lap.targets[idx];
-      const targetEl = cell.querySelector('[data-target-cell]');
-      if (targetEl) targetEl.textContent = fmt(t);
+  // Click delegation: inner board stations open the existing deed modal
+  const innerGrid = document.getElementById('innerBoardGrid');
+  if (innerGrid) {
+    innerGrid.addEventListener('click', function(e) {
+      const cell = e.target.closest('.c[data-station]');
+      if (!cell) return;
+      if (cell.classList.contains('blank') || cell.classList.contains('cn')) return;
+      openInnerDeed(cell.dataset.station);
     });
   }
-
-  function renderBullets(level) {
-    const list = innerBoard.bullets[level] || innerBoard.bullets.L2;
-    const host = document.getElementById('ppBullets');
-    host.innerHTML = list.map(b =>
-      `<div class="pp-bullet"><span class="pp-when">${b.when}</span><span class="pp-do">${b.do}</span></div>`
-    ).join('');
-    document.querySelector('.pp-strip-title').textContent = `${level} Proven Process * What & When`.replace('*','·');
-  }
-
-  function updateLapButtons(level) {
-    document.querySelectorAll('.lap-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.lap === level);
-    });
-  }
-
-  function updateForkBar(level) {
-    const bar = document.getElementById('forkBar');
-    bar.classList.toggle('visible', level === 'L5');
-  }
-
-  window.setLap = function(level) {
-    currentLap = level;
-    updateLapButtons(level);
-    renderTargetsLine(level);
-    renderCellTargets(level);
-    renderBullets(level);
-    updateForkBar(level);
-  };
-
-  /* === Station card modal === */
-  window.openStation = function(n) {
-    const s = innerBoard.stations.find(st => st.n === n); if (!s) return;
-    const target = stationTargetForLap(n, currentLap);
-    const card = document.getElementById('stationCard');
-    card.className = 'station-card s-' + s.side;
-    document.getElementById('sc-eyebrow').textContent = `${s.era} * Station ${String(n).padStart(2,'0')}`.replace('*','·');
-    document.getElementById('sc-name').textContent    = s.name;
-    document.getElementById('sc-target').textContent  = `${currentLap} target: ${fmt(target)}`;
-    document.getElementById('sc-discover').textContent = s.discover;
-    document.getElementById('sc-train').textContent    = s.train;
-    document.getElementById('sc-learn').textContent    = s.learn;
-    document.getElementById('sc-automate').textContent = s.automate;
-    document.getElementById('sc-value').textContent    = s.value;
-    const matLabels = ['House 1', 'House 2', 'House 3', 'Hotel'];
-    document.getElementById('sc-mat-grid').innerHTML = s.mat.map((m, i) =>
-      `<div class="sc-mat-item"><span class="sc-mat-num">${matLabels[i]}</span><span>${m}</span></div>`
-    ).join('');
-    document.getElementById('stationModal').classList.add('open');
-  };
-  window.closeStation = function() {
-    document.getElementById('stationModal').classList.remove('open');
-  };
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeStation(); });
-
-  /* === Player piece positioning (walks the 12 stations + GO) === */
-  function positionPlayerPiece() {
-    const piece = document.getElementById('playerPiece');
-    const goCorner = document.querySelector('.icnr.go');
-    if (!piece || !goCorner) return;
-    const grid = document.getElementById('innerBoardGrid');
-    const gr = grid.getBoundingClientRect();
-    const cr = goCorner.getBoundingClientRect();
-    piece.style.left = (cr.left - gr.left + cr.width / 2 - 10) + 'px';
-    piece.style.top  = (cr.top  - gr.top  + cr.height / 2 - 10) + 'px';
-  }
-
-  // Initial render
-  setLap('L2');
-  setTimeout(positionPlayerPiece, 100);
-  window.addEventListener('resize', positionPlayerPiece);
 })();
 </script>
 </body>
