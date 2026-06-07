@@ -559,10 +559,10 @@ body {
 <div class="outside-label outside-side outside-left">T R A I N</div>
 <div class="board-frame"><div class="board" id="outerBoardGrid">
 
-<!-- Player piece — orange shield that morphs: S → Customer → L-1 -->
+<!-- Player piece — shield that morphs: S → Customer → L-1 (orange) → L-2 (green at CLIENT) -->
 <div class="player-piece hidden" id="outerPlayerPiece">
   <svg viewBox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 0.5 0.5 L 17.5 0.5 L 17.5 7 C 17.5 10.5 9 13.5 9 13.5 C 9 13.5 0.5 10.5 0.5 7 Z" fill="var(--find)" stroke="#d06c1a" stroke-width="0.5"/>
+    <path id="outerPlayerPiecePath" d="M 0.5 0.5 L 17.5 0.5 L 17.5 7 C 17.5 10.5 9 13.5 9 13.5 C 9 13.5 0.5 10.5 0.5 7 Z" fill="var(--find)" stroke="#d06c1a" stroke-width="0.5"/>
     <text id="outerPlayerPieceText" x="9" y="10" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="800" fill="#fff">S</text>
   </svg>
 </div>
@@ -1845,6 +1845,7 @@ function switchTab(tab) {
   const grid     = document.getElementById('outerBoardGrid');
   const piece    = document.getElementById('outerPlayerPiece');
   const pieceText= document.getElementById('outerPlayerPieceText');
+  const piecePath= document.getElementById('outerPlayerPiecePath');
   const placeBtn = document.getElementById('outerPlaceBtn');
   const moveBtn  = document.getElementById('outerMoveBtn');
   const revealBtn= document.getElementById('outerRevealBtn');
@@ -1852,28 +1853,42 @@ function switchTab(tab) {
   const posLabel = document.getElementById('outerGamePosition');
   if (!grid || !piece) return;
 
-  let playerPos = -1;
+  let playerPos    = -1;
+  let currentStage = 0; // 0=S, 1=Customer, 2=L-1, 3=L-2 — sticky, only advances
 
-  /* Shield morph stages — orange throughout, label changes by position:
-     - pos 0..7    : "S"        (Subscriber walking Discovery -> Training Interest)
-     - pos 8..17   : "Customer" (paid -> ticket to training, through Day 2)
-     - pos 18..39  : "L-1"      (L1 Certified onwards) */
-  const SHIELD_STAGES = [
-    { from:0,  label:'S',        fontSize:9,   y:10   },
-    { from:8,  label:'Customer', fontSize:2.8, y:8.5  },
-    { from:18, label:'L-1',      fontSize:5,   y:8.5  }
+  /* Shield stages. Color flips from orange to green at CLIENT (pos 34).
+     The state is sticky: once the player has advanced to a stage, it
+     doesn't go back even on subsequent laps. */
+  const STAGES = [
+    { label:'S',        fontSize:9,   y:10,  fill:'var(--find)',  stroke:'#d06c1a' },
+    { label:'Customer', fontSize:2.8, y:8.5, fill:'var(--find)',  stroke:'#d06c1a' },
+    { label:'L-1',      fontSize:5,   y:8.5, fill:'var(--find)',  stroke:'#d06c1a' },
+    { label:'L-2',      fontSize:5,   y:8.5, fill:'var(--green)', stroke:'#1e8c4d' }
   ];
-  function shieldFor(pos) {
-    let stage = SHIELD_STAGES[0];
-    for (const s of SHIELD_STAGES) { if (pos >= s.from) stage = s; }
-    return stage;
+  /* Stage thresholds — highest pos first so a single forward sweep advances correctly.
+     pos 34 = CLIENT cell (row 5, col 11) -> L-2 (green)
+     pos 18 = L1 Cert (row 3, col 1)      -> L-1
+     pos  8 = Reg + Paid (row 11, col 3)  -> Customer */
+  const STAGE_AT_POS = [
+    { atPos:34, stage:3 },
+    { atPos:18, stage:2 },
+    { atPos: 8, stage:1 }
+  ];
+  function recomputeStage(pos) {
+    for (const t of STAGE_AT_POS) {
+      if (pos >= t.atPos && currentStage < t.stage) { currentStage = t.stage; return; }
+    }
   }
   function updateShield() {
     if (!pieceText) return;
-    const stage = shieldFor(playerPos < 0 ? 0 : playerPos);
+    const stage = STAGES[currentStage];
     pieceText.textContent = stage.label;
     pieceText.setAttribute('font-size', stage.fontSize);
     pieceText.setAttribute('y', stage.y);
+    if (piecePath) {
+      piecePath.setAttribute('fill', stage.fill);
+      piecePath.setAttribute('stroke', stage.stroke);
+    }
   }
 
   function cellAtPos(pos) {
@@ -1903,6 +1918,7 @@ function switchTab(tab) {
     piece.classList.remove('hidden');
     piece.style.gridRow = r;
     piece.style.gridColumn = c;
+    recomputeStage(playerPos);
     updateShield();
   }
 
@@ -1911,7 +1927,8 @@ function switchTab(tab) {
     if (playerPos < 0) { posLabel.textContent = 'Player not placed'; return; }
     const cell = cellAtPos(playerPos);
     const label = cellLabel(cell);
-    posLabel.textContent = label ? ('On: ' + label) : ('On: pos ' + playerPos);
+    const shieldTag = STAGES[currentStage].label + ' · ';
+    posLabel.textContent = shieldTag + (label ? ('On: ' + label) : ('On: pos ' + playerPos));
   }
 
   function updateButtons() {
@@ -1924,6 +1941,7 @@ function switchTab(tab) {
 
   window.outerPlacePlayer = function() {
     playerPos = 0;
+    currentStage = 0;            // start fresh as Subscriber
     paintPiece();
     updateLabel();
     updateButtons();
@@ -1941,6 +1959,7 @@ function switchTab(tab) {
   };
   window.outerResetPlayer = function() {
     playerPos = -1;
+    currentStage = 0;            // reset back to Subscriber
     paintPiece();
     updateLabel();
     updateButtons();
