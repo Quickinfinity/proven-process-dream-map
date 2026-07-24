@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v1.1</title>
+<title>Proven Process Dream Map v1.3</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -465,7 +465,9 @@ body {
 /* Inside the inner board, occupy the empty 9x9 interior */
 .inner-board > .game-controls { grid-row:2 / 11; grid-column:2 / 11; max-width:none; margin:0; z-index:6; }
 /* Floating placement: controls sit in the dead center of an outer board so the whole perimeter stays visible while clicking. */
-.game-controls.game-controls-floating { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:50; margin:0; max-width:320px; background:rgba(250,248,244,0.94); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); box-shadow:0 8px 28px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(0,0,0,0.06); }
+.game-controls.game-controls-floating { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.6); transform-origin:center center; z-index:50; margin:0; max-width:320px; background:rgba(250,248,244,0.94); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); box-shadow:0 8px 28px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(0,0,0,0.06); }
+.game-controls.game-controls-floating .game-controls-title{cursor:move;}
+.game-controls.game-controls-floating.dragging{transition:none;}
 .game-controls-title { font-family:'Playfair Display',serif; font-size:13px; font-weight:900; color:var(--dark); letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; text-align:center; }
 .game-controls-row { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; }
 .game-btn { background:#fff; border:1px solid rgba(0,0,0,0.2); color:var(--dark); padding:7px 14px; font-size:11px; font-weight:700; border-radius:6px; cursor:pointer; transition:all 0.18s; letter-spacing:0.3px; font-family:'DM Sans',sans-serif; box-shadow:var(--shadow-sm); }
@@ -529,7 +531,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v1.1 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-06-06</div>
+  <div class="version">v1.3 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-24 ET &middot; 4 yellow (DCU) + 4 red (Earn) headers &middot; Walk-the-Lap 60% &amp; movable</div>
 </div>
 
 <div class="tabs">
@@ -581,10 +583,10 @@ body {
 <div class="c" style="grid-row:1;grid-column:4;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">SV</div><div class="d">Know What<br>You Want</div></div>
 <div class="c" style="grid-row:1;grid-column:5;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">NASA</div><div class="d">Alignment<br>TTT+TEMP</div></div>
 <div class="c luxor-cell" style="grid-row:1;grid-column:6;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">CSE Mtg 1</div><div class="d">AD+GWYW</div><div class="luxor-beam"><div class="luxor-light"></div><div class="luxor-signal"><div class="luxor-shield">&#127942;</div><div class="luxor-text">DECORATIVE<br>CONCRETE<br>UNIVERSITY</div><div class="luxor-sub">DCU</div><div style="font-size:7px;color:#fff;font-weight:700;margin-top:3px;text-shadow:0 0 8px rgba(255,215,0,0.6);letter-spacing:0.5px;">$99 / month</div></div></div></div>
-<div class="c" style="grid-row:1;grid-column:7;"><div class="s" style="background:var(--yellow);"></div></div>
-<div class="c" style="grid-row:1;grid-column:8;"><div class="s" style="background:var(--yellow);"></div></div>
-<div class="c" style="grid-row:1;grid-column:9;"><div class="s" style="background:var(--yellow);"></div></div>
-<div class="c" style="grid-row:1;grid-column:10;"><div class="s" style="background:var(--yellow);"></div></div>
+<div class="c" style="grid-row:1;grid-column:7;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">Onboard<br>to DCU</div><div class="d">What is DCU<br>Team &middot; Credit</div></div>
+<div class="c" style="grid-row:1;grid-column:8;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">Use the<br>Biz Systems</div><div class="d">AI &middot; Calc<br>Store &middot; Bots</div></div>
+<div class="c" style="grid-row:1;grid-column:9;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">Trailer Course<br>&amp; Equipment</div><div class="d">Coatings<br>&middot; CP Sealer</div></div>
+<div class="c" style="grid-row:1;grid-column:10;"><div class="s" style="background:var(--yellow);"></div><div class="n" style="color:var(--yellow-dark);">Run-the-<br>Business</div><div class="d">Estimate<br>Leads &middot; Hire</div></div>
 
 <!-- ===== TR Corner: DCU (static, no beam) ===== -->
 <div class="c cn" style="grid-row:1;grid-column:11;background:linear-gradient(135deg,#b8960c,#F1C40F);"><div class="n">DCU</div><div class="d">Decorative<br>Concrete U.</div></div>
@@ -595,10 +597,10 @@ body {
 <div class="c" style="grid-row:4;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">Agreement</div><div class="d">&check; BANT Line</div></div>
 <div class="c cn" style="grid-row:5;grid-column:11;background:linear-gradient(135deg,#4a9fd5,#5DADE2);"><div class="n">CLIENT</div><div class="d">Blue Shield<br>Agreement</div></div>
 <div class="c" style="grid-row:6;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">Strategy<br>Build</div><div class="d">20&ndash;30hrs<br>Launch T-60</div></div>
-<div class="c" style="grid-row:7;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
-<div class="c" style="grid-row:8;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
-<div class="c" style="grid-row:9;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
-<div class="c" style="grid-row:10;grid-column:11;"><div class="s" style="background:var(--red);"></div></div>
+<div class="c" style="grid-row:7;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">Equipment<br>Set Up</div><div class="d">Gear In</div></div>
+<div class="c" style="grid-row:8;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">I-Marketing<br>Launch</div><div class="d">Leads On</div></div>
+<div class="c" style="grid-row:9;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">I-BOS<br>Training</div><div class="d">Run the Biz</div></div>
+<div class="c" style="grid-row:10;grid-column:11;"><div class="s" style="background:var(--red);"></div><div class="n" style="color:var(--red);">First Job</div><div class="d">First $</div></div>
 
 <!-- ===== BR Corner: DISCOVERY MARKETING ===== -->
 <div class="c cn" style="grid-row:11;grid-column:11;background:linear-gradient(135deg,var(--dark),var(--dark2));"><div class="n" style="font-size:8px;color:#fff;font-weight:800;letter-spacing:0.5px;line-height:1.2;">DISCOVERY<br>MARKETING</div><div class="d" style="color:rgba(255,255,255,0.92);font-size:6.5px;font-weight:600;line-height:1.3;margin-top:2px;">Ads &bull; Content<br>&larr; DISCOVER</div></div>
@@ -1366,7 +1368,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v1.1 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-06-06
+  Proven Process Dream Map &middot; v1.3 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-24 ET &middot; Yellow (DCU on-ramp) + Red (Earn) headers from Joe; Walk-the-Lap shrunk to 60% + draggable
 </div>
 
 <script>
@@ -2040,6 +2042,10 @@ function switchTab(tab) {
     updateButtons();
   };
 })();
+</script>
+<script>
+/* Walk-the-Lap draggable floating controls v1.3 */
+(function(){function mk(el){if(!el||el.dataset.dragBound)return;el.dataset.dragBound='1';var h=el.querySelector('.game-controls-title')||el;h.style.cursor='move';var on=false,sx,sy,sl,st;h.addEventListener('mousedown',function(e){on=true;el.classList.add('dragging');var pr=(el.offsetParent||document.body).getBoundingClientRect();var er=el.getBoundingClientRect();sl=er.left+er.width/2-pr.left;st=er.top+er.height/2-pr.top;el.style.left=sl+'px';el.style.top=st+'px';sx=e.clientX;sy=e.clientY;e.preventDefault();});document.addEventListener('mousemove',function(e){if(!on)return;el.style.left=(sl+e.clientX-sx)+'px';el.style.top=(st+e.clientY-sy)+'px';});document.addEventListener('mouseup',function(){on=false;el.classList.remove('dragging');});}function boot(){document.querySelectorAll('.game-controls-floating').forEach(mk);}if(document.readyState!=='loading')boot();else document.addEventListener('DOMContentLoaded',boot);})();
 </script>
 </body>
 </html>
