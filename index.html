@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v1.6</title>
+<title>Proven Process Dream Map v1.7</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -531,13 +531,13 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v1.6 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-24 ET &middot; Added a 2nd green L2 $50K&ndash;$250K increments strip (top of stack)</div>
+  <div class="version">v1.7 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-28 ET &middot; Renamed board tiers to Part 1 / Part 2 / Part 3</div>
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('board')">Dream Board</div>
-  <div class="tab" onclick="switchTab('layer2')">Layer 2 &middot; Growth</div>
-  <div class="tab" onclick="switchTab('level3')">Level 3 &middot; Community</div>
+  <div class="tab active" onclick="switchTab('board')">Part 1 &middot; Dream Board</div>
+  <div class="tab" onclick="switchTab('layer2')">Part 2 &middot; Growth</div>
+  <div class="tab" onclick="switchTab('level3')">Part 3 &middot; Community</div>
   <div class="tab" onclick="switchTab('lines')">Itemized Lines</div>
 </div>
 
@@ -922,7 +922,7 @@ body {
 <div class="layer2-wrap">
 
   <div class="layer2-intro">
-    The <strong>L2 Growth Path</strong> as an inner board. Same 11&times;11 grid, same shape as the outer Level 1 board. Four corners mark lap milestones. <strong>Click any colored station</strong> to open its title deed.
+    The <strong>L2 Growth Path</strong> as an inner board. Same 11&times;11 grid, same shape as the outer Part 1 board. Four corners mark lap milestones. <strong>Click any colored station</strong> to open its title deed.
   </div>
 
   <div class="inner-board-outer">
@@ -1015,7 +1015,7 @@ body {
 <div class="layer2-wrap">
 
   <div class="layer2-intro">
-    <strong>Level 3 &mdash; The Community Board</strong> (Inner Shield). Same 11&times;11 shape as Level 1 and Layer 2. Four corners are the community roles. Cells blank for now &mdash; fill in as the canonical framework lands. <em>Concept-stage. None of this is canon yet.</em>
+    <strong>Part 3 &mdash; The Community Board</strong> (Inner Shield). Same 11&times;11 shape as Part 1 and Part 2. Four corners are the community roles. Cells blank for now &mdash; fill in as the canonical framework lands. <em>Concept-stage. None of this is canon yet.</em>
   </div>
 
   <div class="inner-board-outer">
@@ -1371,7 +1371,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v1.6 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-24 ET &middot; v1.6: duplicate green L2 ($50K&ndash;$250K) increments strip added at top of the money ladder (v1.5: Lap down ~1in; v1.4: L2 money to center; v1.3: 8 headers + Lap 60%/draggable)
+  Proven Process Dream Map &middot; v1.7 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-28 ET &middot; v1.7: board tiers renamed to Part 1 / Part 2 / Part 3 (v1.6: 2nd green L2 $50K&ndash;$250K strip; v1.5: Lap down ~1in; v1.4: L2 money to center)
 </div>
 
 <script>
@@ -1504,7 +1504,7 @@ body {
     document.getElementById('deed-hotel').textContent     = fmt(rent.hotel);
     document.getElementById('deed-mort').textContent      = fmt(rent.mort);
     document.getElementById('deed-housecost').textContent = fmt(rent.house);
-    document.getElementById('deed-note').textContent = 'Layer 2 - Growth Levels. Vision-stage values.';
+    document.getElementById('deed-note').textContent = 'Part 2 - Growth Levels. Vision-stage values.';
     document.getElementById('deedModal').classList.add('open');
   };
 
@@ -1811,8 +1811,8 @@ function switchTab(tab) {
     document.getElementById('deed-mort').textContent     = s.mortgage;
     document.getElementById('deed-housecost').textContent = (s.status === 'sourced') ? 'Sourced' : 'Draft';
     document.getElementById('deed-note').textContent     = (s.status === 'sourced')
-      ? 'Layer 2 · L2 Growth Path · sourced from TCP docs.'
-      : 'Layer 2 · L2 Growth Path · draft wording, pending review.';
+      ? 'Part 2 · L2 Growth Path · sourced from TCP docs.'
+      : 'Part 2 · L2 Growth Path · draft wording, pending review.';
     document.getElementById('deedModal').classList.add('open');
   }
   window.openInnerDeed = openInnerDeed;
