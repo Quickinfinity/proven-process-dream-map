@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v1.9</title>
+<title>Proven Process Dream Map v2.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -531,7 +531,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v1.9 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-29 ET &middot; Part 3 rows set: bottom L5 &middot; left L6 &middot; top L7 &middot; right Community</div>
+  <div class="version">v2.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-30 ET &middot; Part 2 shield now morphs at every level corner (L-1 orange &rarr; L-2 green &rarr; L-3 &rarr; L-4 yellow)</div>
 </div>
 
 <div class="tabs">
@@ -922,7 +922,7 @@ body {
 <div class="layer2-wrap">
 
   <div class="layer2-intro">
-    The <strong>L2 Growth Path</strong> as an inner board. Same 11&times;11 grid, same shape as the outer Part 1 board. Four corners mark lap milestones. <strong>Click any colored station</strong> to open its title deed.
+    The <strong>L2 Growth Path</strong> as an inner board. Same 11&times;11 grid, same shape as the outer Part 1 board. Four corners mark lap milestones. <strong>Click any colored station</strong> to open its title deed. Place the player and walk the lap &mdash; the <strong>shield changes colour and number at every level corner</strong>: L-1 orange &rarr; L-2 green &rarr; L-3 &rarr; L-4 yellow.
   </div>
 
   <div class="inner-board-outer">
@@ -982,8 +982,8 @@ body {
     <!-- Player piece — L-1 Shield (same flat-top orange shield as outer board) -->
     <div class="player-piece hidden" id="playerPiece">
       <svg viewBox="0 0 18 14" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0.5 0.5 L 17.5 0.5 L 17.5 7 C 17.5 10.5 9 13.5 9 13.5 C 9 13.5 0.5 10.5 0.5 7 Z" fill="var(--find)" stroke="#d06c1a" stroke-width="0.5"/>
-        <text x="9" y="8.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="5" font-weight="800" fill="#fff">L-1</text>
+        <path id="playerPiecePath" d="M 0.5 0.5 L 17.5 0.5 L 17.5 7 C 17.5 10.5 9 13.5 9 13.5 C 9 13.5 0.5 10.5 0.5 7 Z" fill="var(--find)" stroke="#d06c1a" stroke-width="0.5"/>
+        <text id="playerPieceText" x="9" y="8.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="5" font-weight="800" fill="#fff">L-1</text>
       </svg>
     </div>
 
@@ -1371,7 +1371,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v1.9 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-29 ET &middot; v1.9: Part 3 rows + start-corners &mdash; L5 starts bottom-right (yellow), L6 bottom-left (red), L7 top-left (blue), Community top-right (dark); all 36 cells filled (v1.8: Part 2 level corners L2/L3/L4 + $; v1.7: tiers renamed Part 1/2/3)
+  Proven Process Dream Map &middot; v2.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-30 ET &middot; v2.0: Part 2 player shield changes colour + number as it rounds each level corner (v1.9: Part 3 level corners; v1.8: Part 2 level corners; v1.7: tiers renamed Part 1/2/3)
 </div>
 
 <script>
@@ -1841,10 +1841,39 @@ function switchTab(tab) {
     31:[2,11], 32:[3,11], 33:[4,11], 34:[5,11], 35:[6,11], 36:[7,11], 37:[8,11], 38:[9,11], 39:[10,11]
   };
   const STATION_AT_POS = { 2:'target', 5:'lane', 8:'price', 12:'crew', 15:'gear', 18:'jobs', 22:'scoreboard', 25:'leads', 28:'pulse', 32:'band', 35:'profit', 38:'levelup' };
-  const CORNER_AT_POS  = { 0:'GO', 10:'L2 START', 20:'L4 CERT', 30:'L5 READY' };
+  const CORNER_AT_POS  = { 0:'1st Job Complete (GO)', 10:'L2 Contractor', 20:'L3 Dealer', 30:'L4 Dealer Pro' };
+
+  /* Shield morphs as it rounds each LEVEL corner (Joe 2026-07-29). Corner positions come straight
+     from POS_MAP: 0=[11,11] GO, 10=[11,1] L2, 20=[1,1] L3, 30=[1,11] L4. The colour follows the
+     level's own colour (L2 green, L3/L4 yellow) and the NUMBER inside the shield changes.
+     Yellow needs dark text to stay readable. Sticky, like the outer board: it never goes back. */
+  const STAGES = [
+    { label:'L-1', fill:'var(--find)',   stroke:'#d06c1a', text:'#fff' },
+    { label:'L-2', fill:'var(--green)',  stroke:'#1e8c4d', text:'#fff' },
+    { label:'L-3', fill:'var(--yellow)', stroke:'#b8960c', text:'#0f0f23' },
+    { label:'L-4', fill:'var(--yellow)', stroke:'#b8960c', text:'#0f0f23' }
+  ];
+  const STAGE_AT_POS = [
+    { atPos:30, stage:3 },   // top-right   — L4 Dealer Pro
+    { atPos:20, stage:2 },   // top-left    — L3 Dealer
+    { atPos:10, stage:1 }    // bottom-left — L2 Contractor
+  ];
+  let currentStage = 0;
+  function recomputeStage(pos) {
+    for (const t of STAGE_AT_POS) {
+      if (pos >= t.atPos && currentStage < t.stage) { currentStage = t.stage; return; }
+    }
+  }
+  function updateShield() {
+    const st = STAGES[currentStage];
+    if (pieceText) { pieceText.textContent = st.label; pieceText.setAttribute('fill', st.text); }
+    if (piecePath) { piecePath.setAttribute('fill', st.fill); piecePath.setAttribute('stroke', st.stroke); }
+  }
 
   let playerPos = -1;
   const piece    = document.getElementById('playerPiece');
+  const pieceText= document.getElementById('playerPieceText');
+  const piecePath= document.getElementById('playerPiecePath');
   const placeBtn = document.getElementById('placeBtn');
   const moveBtn  = document.getElementById('moveBtn');
   const revealBtn= document.getElementById('revealBtn');
@@ -1857,6 +1886,8 @@ function switchTab(tab) {
     piece.classList.remove('hidden');
     piece.style.gridRow = row;
     piece.style.gridColumn = col;
+    recomputeStage(playerPos);
+    updateShield();
   }
 
   function updateLabel() {
@@ -1884,6 +1915,7 @@ function switchTab(tab) {
 
   window.placePlayer = function() {
     playerPos = 0; // GO
+    currentStage = 0;   // a fresh lap starts as L-1 (orange)
     paintPiece();
     updateLabel();
     updateButtons();
@@ -1904,6 +1936,8 @@ function switchTab(tab) {
 
   window.resetPlayer = function() {
     playerPos = -1;
+    currentStage = 0;   // shield back to L-1 (orange)
+    updateShield();
     paintPiece();
     updateLabel();
     updateButtons();
