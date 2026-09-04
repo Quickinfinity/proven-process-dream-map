@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v2.0</title>
+<title>Proven Process Dream Map v2.1</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -524,6 +524,27 @@ body {
 .deed-close:hover { background:rgba(255,255,255,0.5); }
 .deed.c-yellow .deed-close { background:rgba(0,0,0,0.18); color:var(--dark); }
 .deed.c-yellow .deed-close:hover { background:rgba(0,0,0,0.32); }
+
+/* ===== Deed assets — links pulled from the Incredible Journey Master Asset Sheet ===== */
+.deed-assets { margin-top:12px; border-top:1px dashed rgba(0,0,0,0.18); padding-top:10px; text-align:left; }
+.deed-assets .ah { font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:1.6px;
+  text-transform:uppercase; color:#888; margin-bottom:7px; display:flex; justify-content:space-between; align-items:center; }
+.deed-assets .ah a { color:#888; text-decoration:underline; }
+.deed-assets .alist { max-height:190px; overflow-y:auto; padding-right:4px; }
+.deed-assets .arow { display:flex; align-items:baseline; gap:6px; padding:4px 0; border-bottom:1px solid rgba(0,0,0,0.06); font-size:11px; line-height:1.35; }
+.deed-assets .arow:last-child { border-bottom:0; }
+.deed-assets .an { flex:1; color:#1a1a1a; font-weight:600; text-decoration:none; }
+.deed-assets .an:hover { text-decoration:underline; }
+.deed-assets .an.nolink { color:#666; font-weight:500; }
+.deed-assets .at { font-size:9px; color:#999; font-family:'JetBrains Mono',monospace; white-space:nowrap; }
+.deed-assets .ac { font-size:8.5px; font-weight:700; padding:1px 5px; border-radius:4px; white-space:nowrap; }
+.ac-live { background:rgba(39,174,96,0.16); color:#1e7d43; }
+.ac-prog { background:rgba(241,196,15,0.22); color:#7D6608; }
+.ac-need { background:rgba(230,126,34,0.18); color:#a85610; }
+.ac-not  { background:rgba(192,57,43,0.15); color:#a5281b; }
+.ac-na   { background:rgba(120,120,120,0.14); color:#666; }
+.deed-assets .ao { font-size:9px; color:#aaa; white-space:nowrap; }
+.deed-assets .none { font-size:10.5px; color:#999; font-style:italic; }
 </style>
 </head>
 <body>
@@ -531,7 +552,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v2.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-30 ET &middot; Part 2 shield now morphs at every level corner (L-1 orange &rarr; L-2 green &rarr; L-3 &rarr; L-4 yellow)</div>
+  <div class="version">v2.1 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-30 ET &middot; Part 1 squares now carry their live assets + links from the Master Asset Sheet (134 assets, 34 squares)</div>
 </div>
 
 <div class="tabs">
@@ -1366,12 +1387,13 @@ body {
     </div>
     <div class="mort">Mortgage Value <strong id="deed-mort">TBD</strong> &middot; Houses <strong id="deed-housecost">TBD</strong> ea</div>
     <div class="note" id="deed-note">Vision-stage values. To be priced in next session.</div>
+    <div class="deed-assets" id="deed-assets"></div>
   </div>
 </div>
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v2.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-30 ET &middot; v2.0: Part 2 player shield changes colour + number as it rounds each level corner (v1.9: Part 3 level corners; v1.8: Part 2 level corners; v1.7: tiers renamed Part 1/2/3)
+  Proven Process Dream Map &middot; v2.1 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-07-30 ET &middot; v2.1: Part 1 title deeds show live assets/links/status/owner from the Incredible Journey Master Asset Sheet (v2.0: Part 2 morphing shield; v1.9: Part 3 level corners)
 </div>
 
 <script>
@@ -1448,6 +1470,73 @@ body {
     return 'c-cream';
   }
 
+
+  const SQUARE_ASSETS = {
+    "discoverymarketing": [{n:"DEAL 1: All Exits to Segment (MERGED)",t:"Workflow",l:"https://app.hubspot.com/workflows/49577885/platform/flow/1778368151/edit",s:"Live",o:"Elijah Quick"},{n:"DEAL1-TEMP-Updates.mov",t:"Video",s:"Live",o:"Will Fowler"},{n:"Rustic Concrete Wood PSI Ad (Facebook)",t:"Ad",l:"https://fb.me/adspreview/facebook/263sTOVEILsyx5E",s:"Live",o:"Simi Brown"},{n:"RCW (PSI)",t:"PDF",l:"https://49577885.fs1.hubspotusercontent-na1.net/hubfs/49577885/Product%20and%20Equipment%20Master%20Folder/PSI%20Files/Rustic_Concrete_Wood%20Free%20Course%20PDF%20Value.pdf",s:"Live",o:"Tyler Wilson"},{n:"RCW Nurture Campaign E1",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/207289423161?portalId=49577885&preview_key=keUnsmrS&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live",o:"Tyler Wilson"},{n:"RCW Nurture Campaign E2",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/207305916592?portalId=49577885&preview_key=BfNbsdjg&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live",o:"Tyler Wilson"},{n:"RCW Nurture Campaign E3",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/207289586996?portalId=49577885&preview_key=PZTBailP&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live",o:"Tyler Wilson"},{n:"Graniflex (PSI)",t:"PDF",l:"https://drive.google.com/file/d/15anBFE7tedhRdIPaHxrMmKGB8Zb53-tX/view?usp=sharing",s:"Live",o:"Tyler Wilson"},{n:"Graniflex Ad Video",t:"Video",l:"https://drive.google.com/file/d/1v2FH_IXGhc2MVGZJ3US3_NAHvKV-pJFW/view?usp=sharing",s:"Live",o:"Bradley Viers"},{n:"Graniflex Organic Nurture E1",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213725002647?portalId=49577885&preview_key=GQyAmjWB&_preview=true&from_buffer=true&hsPreviewerApp=email&cacheBust=1785862378158",s:"Live",o:"Tyler Wilson"},{n:"Graniflex Organic Nurture E2",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213724891483?portalId=49577885&preview_key=hjfnZweb&_preview=true&from_buffer=true&hsPreviewerApp=email&cacheBust=1785862396645",s:"Live",o:"Tyler Wilson"},{n:"Graniflex Organic Nurture E3",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213725081241?portalId=49577885&preview_key=bSBrZieN&_preview=true&from_buffer=true&hsPreviewerApp=email&cacheBust=1785862426640",s:"Live",o:"Tyler Wilson"},{n:"Metallic Marble Stain (PSI)",t:"PDF",l:"https://pages.theconcreteprotector.com/hubfs/Product%20and%20Equipment%20Master%20Folder/PSI%20Files/PSI_MetallicMarble_Master_ConcreteProtector%20(1).pdf",s:"Live"},{n:"Metallic Organic Nurture E1",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/218687246486?portalId=49577885&preview_key=LlzjimfY&_preview=true&from_buffer=true&hsPreviewerApp=email&cacheBust=1785862543661",s:"Live"},{n:"Metallic Organic Nurture E2",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/218687279180?portalId=49577885&preview_key=JAwSuGZv&_preview=true&from_buffer=true&hsPreviewerApp=email&cacheBust=1785862527648",s:"Live"},{n:"Training Sign Up Ad (Facebook)",t:"Ad",l:"https://fb.me/adspreview/facebook/26m9Admic1R3dPs",s:"Live",o:"Simi Brown"},{n:"NOVICEJOETRAININGAD_FILLEDOUTFORM",t:"Form",s:"Live"},{n:"GROWTHJOEGRANIFLEXAD_FILLEDOUTFORM",t:"Form",s:"Live"},{n:"Organic Lead - TEMP Introduction",t:"Email",l:"https://app.hubspot.com/email/49577885/details/208849137963/",s:"Live",o:"Aidan Casey"},{n:"Organic Lead - RCW Case Study",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/208849138012?portalId=49577885&preview_key=kkYetmhK&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"Organic Lead - Graniflex",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/208849133168?portalId=49577885&preview_key=IjvGkVSL&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"Organic Lead - Remote Training Kits",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/208835386915?portalId=49577885&preview_key=kupPLgvS&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"Lead pipeline stage (auto)",t:"Other",s:"N/A"}],
+    "subscriber": [{n:"SUBSCRIBER DEAL CREATION - DEAL 1: Discovery Recruit",t:"Workflow",l:"https://app.hubspot.com/workflows/49577885/view/default",s:"Live",o:"Elijah Quick"},{n:"Subscriber pipeline stage",t:"Other",s:"N/A"}],
+    "mql": [{n:"MQL pipeline stage (1st human touch)",t:"Other",s:"N/A"}],
+    "contact": [{n:"Products (TEMP)",t:"Email",l:"https://app.hubspot.com/email/49577885/details/214599835755/",s:"Live",o:"Will Fowler"},{n:"Marketing (TEMP)",t:"Email",l:"https://app.hubspot.com/email/49577885/details/214599578421/",s:"Live",o:"Will Fowler"},{n:"Equipment (TEMP)",t:"Email",l:"https://app.hubspot.com/email/49577885/details/214246677761/",s:"Live",o:"Will Fowler"},{n:"Training (TEMP)",t:"Email",l:"https://app.hubspot.com/email/49577885/details/214226449069/",s:"Live",o:"Will Fowler"},{n:"DR TEMP",t:"Email",s:"Live",o:"Will Fowler"},{n:"Attempted Contact / TEMP Contact stages",t:"Other",s:"N/A"}],
+    "followup": [{n:"Proof / urgency sequence",t:"Email",s:"Not Started"}],
+    "sql": [{n:"v2 Financing: Training Cultivation (Regular)",t:"Email",l:"https://app.hubspot.com/email/49577885/details/197193084054/performance?insightContext=GLOBAL_BENCHMARK_CONTEXT&returnPath=%2Fmanage%2Fstate%2Fall%3Fsearch%3Dv2%2520Financing%253A%2520Training%2520Cultivation%2520(Regular)",s:"Live"}],
+    "traininginterest": [{n:"Training Dates",t:"Email",s:"In Progress"},{n:"Training Interest pipeline stage",t:"Other",s:"N/A"}],
+    "regpaid": [{n:"DEAL 1 Registered & Paid -\\> move to Deposit Received",t:"Workflow",l:"https://app.hubspot.com/workflows/49577885/view/default",s:"Live",o:"Elijah Quick"},{n:"DCU - Ticket Confirmation",t:"Email",s:"Live"},{n:"Training Reservation Confirmation",t:"Email",s:"In Progress"},{n:"2026 Training Class List",t:"Document",s:"Live"}],
+    "customer499": [{n:"Customer pays $499 (milestone corner)",t:"Other",s:"N/A"}],
+    "depositreceived": [{n:"Training: Travel Options",t:"Email",s:"Live"},{n:"DC What to Expect",t:"Email",s:"Live"},{n:"Deposit Received pipeline stage",t:"Other",s:"N/A"}],
+    "trainingscheduled": [{n:"DC: Travel Guide (Email)",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/207725240926?portalId=49577885&preview_key=eruvWNUC&_preview=true&from_buffer=false&hsPreviewerApp=email",s:"Live",o:"Aidan Casey"},{n:"Travel Guide (PDF)",t:"PDF",l:"https://49577885.fs1.hubspotusercontent-na1.net/hubfs/49577885/TravelGuide_TheConcreteProtector_022426%20(2).pdf",s:"Live"},{n:"PTSG Link Delivery",t:"Email",s:"Live",o:"Will Fowler"}],
+    "ptgmtgmail": [{n:"PTSG Invite v2",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213208486047?portalId=49577885&preview_key=NDpRILqQ&_preview=true&from_buffer=false&hsPreviewerApp=email",s:"Live"},{n:"PTSG Scheduling Text (SMS)",t:"Other",s:"Live"},{n:"PTSG (DCU)",t:"Landing Page",l:"https://decorativeconcreteu.com/pre-training-study-guide/",s:"Live",o:"Will Fowler"},{n:"PTSG Meeting Video (DCU)",t:"Video",l:"https://decorativeconcreteu.com/courses/ptsg/",s:"Live",o:"Bradley Viers"},{n:"PTSG Slideshow v14 + screencast",t:"Document",s:"Live"},{n:"PTSG v2 Follow-Up",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213208929088?portalId=49577885&preview_key=XGRRTmwF&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"PTSG v2 Day 5 Follow-Up",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213257084773?portalId=49577885&preview_key=NnZgHXnZ&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"PTSG v2 Reschedule",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213264243059?portalId=49577885&preview_key=YqYsNZWF&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"PTSG V2 Meeting Reminder",t:"Email",s:"In Progress"},{n:"PTSG v2 Fast Pass A",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213264275021?portalId=49577885&preview_key=EgVcwgGg&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"PTSG v2 Fast Pass B",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213264570785?portalId=49577885&preview_key=cNvzhVsw&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"PTSG v2 Fast Pass C",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213264571199?portalId=49577885&preview_key=hiwimrda&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live"},{n:"Fast Pass lane duplication (automation)",t:"Other",s:"Live"}],
+    "cciintrocall": [{n:"CCI Intro Email",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/212668908905?portalId=49577885&preview_key=lKavMkbZ&_preview=true&from_buffer=false&hsPreviewerApp=email",s:"Live",o:"Will Fowler"},{n:"CCI Intro Call (Bob Crawford)",t:"Other",s:"Live"},{n:"TCP_CCI_CourseTreatment_v01.pdf",t:"PDF",s:"Live"}],
+    "fridaybefore": [{n:"Friday Before Training",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/212814224739?portalId=49577885&preview_key=BvdjQhJS&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live",o:"Will Fowler"}],
+    "day1": [{n:"Training Day 1 v2",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/212885716376?portalId=49577885&preview_key=OSecESaW&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live",o:"Will Fowler"},{n:"DCU Boots and Suits",t:"Email",s:"Live"}],
+    "day2": [{n:"Training Day 2 v2",t:"Email",l:"https://app.hubspot.com/email/49577885/details/212964209315/performance?insightContext=GLOBAL_BENCHMARK_CONTEXT&returnPath=%2Fmanage%2Fstate%2Fall%3Fsearch%3Dday%25202",s:"Live",o:"Will Fowler"},{n:"DC Training Day 2 Recap",t:"Email",s:"Live"}],
+    "l1cert": [{n:"Monthly Training Certificates (+PDF)",t:"Email",l:"https://app.hubspot.com/email/49577885/details/217378545966/performance?insightContext=GLOBAL_BENCHMARK_CONTEXT&returnPath=%2Fmanage%2Fstate%2Fall%3Fsearch%3Dtrain",s:"Live"},{n:"DC Training Group Photo/Certificate",t:"Email",s:"Live"},{n:"L-1 Training Class Certification stage",t:"Other",s:"N/A"}],
+    "week12followup": [{n:"After Training Email Week 1",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/212390797695?portalId=49577885&preview_key=qZjppwnh&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live",o:"Will Fowler"},{n:"After Training Email Week 2",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213106782367?portalId=49577885&preview_key=WhYkHYkY&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",s:"Live",o:"Will Fowler"},{n:"(82525) 30 Day DCU Link (Post Training)",t:"Email",s:"Live"},{n:"DC: Meet Your Success Team",t:"Email",s:"In Progress"}],
+    "certified": [{n:"L1 Certified (milestone corner)",t:"Other",s:"N/A"}],
+    "go": [{n:"DCU Teaser",t:"Video",l:"https://pages.theconcreteprotector.com/hubfs/DCUTeaser.mp4",s:"Live",o:"Bradley Viers"},{n:"Fast Pass activation sequence",t:"Other",s:"In Progress"},{n:"Full DCU Commercial",t:"Video",l:"https://theconcreteprotector.atlassian.net/browse/DP-819",s:"In Progress",o:"Bradley Viers"},{n:"Fast Pass graphics (Time To Decide, Table)",t:"Image",s:"Live"},{n:"Deal 3 '(GO)' pipeline stage",t:"Other",s:"N/A"}],
+    "icard": [{n:"ICC Card Invite",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/213273542549?portalId=49577885&preview_key=XAqYSFNc&_preview=true&from_buffer=false&hsPreviewerApp=email",o:"Will Fowler"},{n:"DC: Character Card Assessment Links",t:"Email",s:"In Progress"},{n:"ICC Card Commercial",t:"Video",l:"https://pages.theconcreteprotector.com/hubfs/Incredible%20Character%20Card%20Commercial.mp4",s:"Live",o:"Bradley Viers"},{n:"iCard live examples (Rich Cabral, Matt Leckner)",t:"Document",s:"Live"},{n:"iCard ops process (Melissa Casey, 07-16 mtg)",t:"Document",s:"Live",o:"Melissa Casey"}],
+    "sv": [{n:"Shareholders Vision Course (DCU)",t:"Video",l:"https://decorativeconcreteu.com/shareholdersvision",s:"Live",o:"Joe Quick"},{n:"DC Shareholders Vision Invite",t:"Email",s:"Live"},{n:"SV Promotional Video",t:"Video",l:"https://theconcreteprotector.atlassian.net/browse/DP-785",s:"In Progress",o:"Bradley Viers"},{n:"Monthly 'GWYW Invitation + SHV Access'",t:"Email",s:"Live"},{n:"ShareholdersVision_Commercial_DraftV1.mp4",t:"Video",s:"In Progress"}],
+    "nasa": [{n:"NASA Form (DCU)",t:"Form",l:"https://decorativeconcreteu.com/needs-assessment-form/",s:"Live",o:"Joe Quick"},{n:"DC NASA Invite",t:"Email",s:"Live"},{n:"NASA Promotional Video",t:"Video",l:"https://theconcreteprotector.atlassian.net/browse/DP-784",s:"In Progress",o:"Bradley Viers"},{n:"2026 NASA Form Confirmation + Resources",t:"Email",s:"Live"},{n:"NASA Followup",t:"Email",s:"In Progress"},{n:"NASA video folder + What-It-Asks graphics",t:"Video",s:"Live"}],
+    "csemtg1": [{n:"CSE Booking Invite",t:"Email",l:"https://49577885.hubspotpreview-na1.com/_hcms/preview/email/214056610697?portalId=49577885&preview_key=dfdBhwOI&_preview=true&from_buffer=false&hsPreviewerApp=email&cacheBust=0",o:"Will Fowler"},{n:"CSE Invite Email",t:"Email",s:"Not Started"},{n:"CSE Meeting Videos (Pt 1 and 2)",t:"Email",l:"https://drive.google.com/drive/folders/19jAoT86uKpRxlU_LprsVZJmMA6kqmR3o?usp=sharing",s:"Not Started",o:"Bradley Viers"},{n:"GWYW_Workshop_v3.8.pptx (Joe)",t:"Document",s:"Live"},{n:"GWYW Recap Email",t:"Email",s:"Live"},{n:"PTSG and CSE Meetings Overhaul",t:"Document",s:"In Progress",o:"Vern"}],
+    "dcu": [{n:"Decorative Concrete University (milestone corner)",t:"Other",l:"https://decorativeconcreteu.com",s:"N/A"}],
+    "gtmbuild": [{n:"Venhaus_GTM_Plan_v1-0",t:"Document",s:"Live"},{n:"GTM Build stage + emails + automation",t:"Other",s:"Not Started"}],
+    "gtmpresent": [{n:"GTM Present meeting",t:"Other",s:"Not Started"},{n:"07-22 First Coat Surface Pros consult",t:"Document",s:"Live"}],
+    "agreement": [{n:"DCU Agreement Templates (WordPress)",t:"Other",l:"https://decorativeconcreteu.com/wp-admin/admin.php?page=dcu-agreement-templates",s:"Live",o:"Will Fowler"},{n:"I-BOS-Lease-Agreement 2026",t:"Document",s:"Live"},{n:"Agreement send/sign automation",t:"Other",s:"Not Started"}],
+    "client": [{n:"Client conversion (milestone)",t:"Other",s:"N/A"}],
+    "strategybuild": [{n:"Strategy Build stage assets",t:"Other",s:"Not Started"}],
+    "equipmentsetup": [{n:"Warrior Equipment Introduction",t:"Email",s:"In Progress"},{n:"Equipment quoting process",t:"Other",s:"Not Started"}],
+    "imarketinglaunch": [{n:"I-Market Service Catalog",t:"Document",s:"Live"},{n:"I-Market launch emails / automation",t:"Email",s:"Not Started"}],
+    "ibostraining": [{n:"I-BOS Onboarding MAIN SOP (V1)",t:"Document",s:"Live"},{n:"DealerPro Onboarding (I-BOS) pipeline",t:"Other",s:"Live"},{n:"I-BOS training scheduling emails",t:"Email",s:"Not Started"}],
+    "firstjob": [{n:"First Job stage \u2014 trigger + follow-up",t:"Other",s:"Not Started"},{n:"P1",t:"LEARN"},{n:"P1",t:"LEARN"},{n:"P1",t:"EARN"},{n:"P2",t:"EARN"},{n:"P2",t:"LEARN"},{n:"P2",t:"TRAIN"},{n:"P2",t:"LEARN"},{n:"P3",t:"DISCOVER"},{n:"P3",t:"DISCOVER"},{n:"P3",t:"DISCOVER"},{n:"P3",t:"LEARN"},{n:"P3",t:"TRAIN"},{n:"P3",t:"LEARN",o:"Vern"}],
+  };
+  const ASSET_SHEET_URL = "https://docs.google.com/spreadsheets/d/1nOHntf5QcpzeRAjlb7ohZQtrVPltNdcpJOmTvm0W7fU/edit?gid=1132788838#gid=1132788838";
+  function assetKey(s) {
+    s = (s || "").normalize("NFKD");
+    s = s.replace(/[\u2013\u2014]/g, "-").replace(/\u2192/g, "").replace(/\u2606|\u2605/g, "");
+    return s.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  }
+  const STATUS_CLASS = { "Live":"ac-live", "In Progress":"ac-prog", "Needs Update":"ac-need",
+                         "Not Started":"ac-not", "N/A":"ac-na" };
+  function renderAssets(name, detail) {
+    const box = document.getElementById("deed-assets");
+    if (!box) return;
+    const list = SQUARE_ASSETS[assetKey(name)] || SQUARE_ASSETS[assetKey(detail)] || null;
+    const head = '<div class="ah"><span>Assets</span>' +
+                 '<a href="' + ASSET_SHEET_URL + '" target="_blank" rel="noopener">Master Sheet &#8599;</a></div>';
+    if (!list || !list.length) {
+      box.innerHTML = head + '<div class="none">No assets logged for this square yet.</div>';
+      return;
+    }
+    const rows = list.map(function(a) {
+      const chip = a.s ? '<span class="ac ' + (STATUS_CLASS[a.s] || "ac-na") + '">' + a.s + '</span>' : '';
+      const type = a.t ? '<span class="at">' + a.t + '</span>' : '';
+      const own  = a.o ? '<span class="ao">' + a.o + '</span>' : '';
+      const nm   = a.l
+        ? '<a class="an" href="' + a.l + '" target="_blank" rel="noopener">' + a.n + '</a>'
+        : '<span class="an nolink">' + a.n + '</span>';
+      return '<div class="arow">' + nm + type + chip + own + '</div>';
+    }).join("");
+    box.innerHTML = head + '<div class="alist">' + rows + '</div>';
+  }
+
   function openDeed(cell) {
     const nameEl  = cell.querySelector('.n');
     const detailEl = cell.querySelector('.d');
@@ -1470,6 +1559,7 @@ body {
     document.getElementById('deed-housecost').textContent = fmt(rent.house);
     document.getElementById('deed-note').textContent =
       `Vision-stage values for the ${FAMILY_LABEL[family] || 'this'} family. To be priced in next session.`;
+    renderAssets(name, detail);
     document.getElementById('deedModal').classList.add('open');
   }
   window.closeDeed = function() {
@@ -1505,6 +1595,7 @@ body {
     document.getElementById('deed-mort').textContent      = fmt(rent.mort);
     document.getElementById('deed-housecost').textContent = fmt(rent.house);
     document.getElementById('deed-note').textContent = 'Part 2 - Growth Levels. Vision-stage values.';
+    { const b=document.getElementById('deed-assets'); if(b) b.innerHTML=''; }
     document.getElementById('deedModal').classList.add('open');
   };
 
