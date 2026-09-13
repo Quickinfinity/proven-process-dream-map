@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v2.3</title>
+<title>Proven Process Dream Map v2.4</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -580,7 +580,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v2.3 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; Part 1 cards are now 100% sourced &mdash; the invented rent / house / hotel figures are gone</div>
+  <div class="version">v2.4 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; No invented figures anywhere on the board &mdash; growth-ring placeholders blanked too</div>
 </div>
 
 <div class="tabs">
@@ -1421,7 +1421,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v2.3 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; v2.3: Part 1 deeds drop the placeholder rent/house/hotel/mortgage values &mdash; every field on a Part 1 card now traces to the Master Asset Sheet or the Deal Map Sheet (v2.2: deal + stage + linked assets + gap; v2.1: asset links)
+  Proven Process Dream Map &middot; v2.4 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; v2.4: growth-ring deeds drop their placeholder rent/house/hotel values too &mdash; the board now carries NO invented figures on any card (v2.3: Part 1 blanked; v2.2: deal + stage + linked assets + gap)
 </div>
 
 <script>
@@ -1645,18 +1645,13 @@ body {
     card.className = 'deed ' + p.family;
     document.getElementById('deed-name').textContent = p.name;
     document.getElementById('deed-sub').textContent  = p.sub;
-    document.getElementById('deed-rent').textContent      = fmt(rent.base);
-    document.getElementById('deed-h1').textContent        = fmt(rent.h1);
-    document.getElementById('deed-h2').textContent        = fmt(rent.h2);
-    document.getElementById('deed-h3').textContent        = fmt(rent.h3);
-    document.getElementById('deed-h4').textContent        = fmt(rent.h4);
-    document.getElementById('deed-hotel').textContent     = fmt(rent.hotel);
-    document.getElementById('deed-mort').textContent      = fmt(rent.mort);
-    document.getElementById('deed-housecost').textContent = fmt(rent.house);
-    document.getElementById('deed-note').textContent = 'Part 2 - Growth Levels. Vision-stage values.';
-    { const rt=document.getElementById('deed-rent-table'); if(rt) rt.style.display='';
-      const ml=document.getElementById('deed-mort-line');  if(ml) ml.style.display='';
-      const nt=document.getElementById('deed-note');       if(nt) nt.style.display=''; }
+    /* Joe 2026-09-12 — BLANK THEM, growth ring too. These were the same unsourced placeholders
+       Part 1 just dropped ($6 rent on an L2 Contractor card). What stays is what IS sourced:
+       the level name and its dollar band, which match the growth levels / itemized lines. */
+    { const rt = document.getElementById('deed-rent-table'); if (rt) rt.style.display = 'none';
+      const ml = document.getElementById('deed-mort-line');  if (ml) ml.style.display = 'none';
+      const nt = document.getElementById('deed-note');
+      if (nt) { nt.textContent = ''; nt.style.display = 'none'; } }
     { const b=document.getElementById('deed-assets'); if(b) b.innerHTML=''; }
     document.getElementById('deedModal').classList.add('open');
   };
