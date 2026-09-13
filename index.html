@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v2.4</title>
+<title>Proven Process Dream Map v2.5</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -573,6 +573,55 @@ body {
   font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:1px; text-transform:uppercase;
   color:#999; display:flex; gap:10px; flex-wrap:wrap; }
 .deed-assets .srcs a { color:#999; text-decoration:underline; }
+
+/* ===== DEED CARD TYPE SCALE (Joe 2026-09-12: "all very legible, similar size, a little bigger")
+   Four sizes only, replacing the 13 ad-hoc ones:
+     title 24 · body 14 · meta 12 · micro 11
+   Card widened 280 -> 380 so nothing has to shrink to fit. ===== */
+.deed { width:380px; }
+.deed .deed-top { padding:18px 20px 15px; }
+.deed .deed-top .ribbon { font-size:11px; letter-spacing:2.5px; }
+.deed .deed-top .pname  { font-size:24px; letter-spacing:1.2px; margin-top:8px; line-height:1.2; }
+.deed .deed-top .psub   { font-size:13px; margin-top:7px; line-height:1.4; }
+
+.deed .rent-table { padding:6px 18px; }
+.deed .rent-row { font-size:14px; padding:7px 0; line-height:1.45; }
+.deed .mort { font-size:12px; padding:10px 18px; line-height:1.5; }
+.deed .note { font-size:12px; padding:10px 18px 14px; line-height:1.5; }
+
+/* --- the sourced blocks --- */
+.deed-assets { padding:0 18px 16px; margin-top:14px; padding-top:12px; }
+.deed-assets .dbadge { font-size:11px; letter-spacing:1px; padding:4px 10px; margin-bottom:11px; }
+.deed-assets .ah { font-size:11px; letter-spacing:1.4px; margin-bottom:9px; }
+
+.deed-assets .stage { padding:10px 12px; margin-bottom:11px; border-radius:7px; }
+.deed-assets .stage .sn { font-size:14px; line-height:1.4; }
+.deed-assets .stage .sm { font-size:12px; margin-top:4px; line-height:1.5; }
+
+.deed-assets .alist { max-height:320px; }
+.deed-assets .arow { font-size:14px; padding:8px 0; line-height:1.45; }
+.deed-assets .aline { gap:8px; flex-wrap:wrap; }
+.deed-assets .an { font-size:14px; line-height:1.45; }
+.deed-assets .at { font-size:11px; }
+.deed-assets .ac { font-size:11px; padding:2px 7px; border-radius:5px; }
+.deed-assets .ao { font-size:11px; }
+.deed-assets .anote { font-size:12px; margin-top:4px; line-height:1.5; }
+.deed-assets .none { font-size:13px; line-height:1.5; }
+
+.deed-assets .gap { padding:11px 13px; margin-top:13px; border-radius:7px; }
+.deed-assets .gap .gh { font-size:11px; letter-spacing:1.2px; margin-bottom:6px; }
+.deed-assets .gap .gm { font-size:14px; line-height:1.4; }
+.deed-assets .gap .ge { font-size:12px; margin-top:5px; line-height:1.5; }
+.deed-assets .gap .gs { font-size:12px; margin-top:6px; line-height:1.5; }
+.deed-assets .gap .gp { font-size:11px; padding:2px 7px; }
+
+.deed-assets .srcs { font-size:11px; letter-spacing:0.6px; gap:14px; margin-top:13px; padding-top:10px; }
+.deed-close { font-size:22px; }
+
+@media (max-width:440px) {
+  .deed { width:100%; }
+  .deed .deed-top .pname { font-size:21px; }
+}
 </style>
 </head>
 <body>
@@ -580,7 +629,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v2.4 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; No invented figures anywhere on the board &mdash; growth-ring placeholders blanked too</div>
+  <div class="version">v2.5 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; Card typography normalised &mdash; one 4-step scale, bigger and legible, card widened to 380px</div>
 </div>
 
 <div class="tabs">
@@ -1421,7 +1470,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v2.4 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; v2.4: growth-ring deeds drop their placeholder rent/house/hotel values too &mdash; the board now carries NO invented figures on any card (v2.3: Part 1 blanked; v2.2: deal + stage + linked assets + gap)
+  Proven Process Dream Map &middot; v2.5 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-09-12 ET &middot; v2.5: deed cards retyped to a single scale (title 24 / body 14 / meta 12 / micro 11) and widened 280&rarr;380px (v2.4: no invented figures anywhere; v2.2: deal + stage + linked assets + gap)
 </div>
 
 <script>
