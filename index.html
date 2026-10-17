@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v2.9</title>
+<title>Proven Process Dream Map v3.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -629,7 +629,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v2.9 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-10-17 ET &middot; CSE square: Market Study &rarr; Ability &amp; Desire &middot; Getting What You Want</div>
+  <div class="version">v3.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-10-17 ET &middot; GTM cards swapped to match their squares &mdash; Consultation holds the meeting, Build holds the plan</div>
 </div>
 
 <div class="tabs">
@@ -1470,7 +1470,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v2.9 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-10-17 ET &middot; v2.9: Getting What You Want added under Market Study &rarr; Ability &amp; Desire (v2.8: Deal 4 reorder + CSE label removed; v2.7: Go To Market Consultation)
+  Proven Process Dream Map &middot; v3.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-10-17 ET &middot; v3.0: the two GTM deed cards swapped so each matches its square &mdash; Go To Market Consultation carries the meeting assets, Go To Market Build carries the Venhaus plan + build gap (v2.9: Getting What You Want; v2.8: Deal 4 reorder)
 </div>
 
 <script>
@@ -1587,8 +1587,11 @@ body {
   };
   /* The square was renamed GTM Build -> Go To Market Consultation (Joe 2026-10-17).
      The deed keys off the square name, so alias the new key onto the same record. */
-  SQUARE_DATA["gotomarketconsultation"] = SQUARE_DATA["gtmbuild"];
-  SQUARE_DATA["gotomarketbuild"] = SQUARE_DATA["gtmpresent"];
+  /* Cards follow the SQUARE, not the old sheet heading (Joe 2026-10-17):
+     Consultation is the 90-min meeting  -> the old "GTM Present" meeting assets.
+     Build is the plan being produced    -> the old "GTM Build" assets (Venhaus plan). */
+  SQUARE_DATA["gotomarketconsultation"] = SQUARE_DATA["gtmpresent"];
+  SQUARE_DATA["gotomarketbuild"] = SQUARE_DATA["gtmbuild"];
   SQUARE_DATA["marketstudyabilitydesire"] = SQUARE_DATA["csemtg1"];
   const SHEET_ASSET = "https://docs.google.com/spreadsheets/d/1nOHntf5QcpzeRAjlb7ohZQtrVPltNdcpJOmTvm0W7fU/edit?gid=1132788838#gid=1132788838";
   const SHEET_DEAL  = "https://docs.google.com/spreadsheets/d/1srPYUlaPbmniW-oj4mlPVqpHxz1RbZ0ER4vB4g9VbD8/edit?gid=863065536#gid=863065536";
