@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v4.6</title>
+<title>Proven Process Dream Map v4.7</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -642,6 +642,18 @@ body {
 .fp-rail .fp-text:active { cursor:grabbing; }
 .fp-rail.dragging { z-index:60; }
 .fp-rail.dragging .fp-text { cursor:grabbing; }
+
+/* ===== Updates-needed banner: links the log sheet from Itemized Lines ===== */
+.upd-bar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 14px;
+  padding:10px 14px; border:1px solid rgba(192,57,43,0.28); background:rgba(192,57,43,0.05);
+  border-radius:8px; font-family:'DM Sans',sans-serif; }
+.upd-bar .ub-tag { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:800;
+  letter-spacing:1.4px; text-transform:uppercase; color:#fff; background:#a5281b;
+  padding:3px 9px; border-radius:5px; white-space:nowrap; }
+.upd-bar .ub-txt { font-size:12.5px; color:#444; line-height:1.5; flex:1; min-width:200px; }
+.upd-bar .ub-txt b { color:#a5281b; }
+.upd-bar a { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700;
+  letter-spacing:0.6px; color:#a5281b; text-decoration:underline; white-space:nowrap; }
 </style>
 </head>
 <body>
@@ -649,7 +661,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v4.6 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; Both arrows are draggable by their label (double-click to reset)</div>
+  <div class="version">v4.7 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; Updates Needed log linked from Itemized Lines</div>
 </div>
 
 <div class="tabs">
@@ -1205,6 +1217,7 @@ body {
 <!-- ==================== LINES TAB ==================== -->
 <div id="tab-lines" class="tab-content">
 <div class="lines-wrap" id="linesZone">
+<div class="upd-bar"><span class="ub-tag">Updates Needed</span><span class="ub-txt">Changes made on this map that still need a matching update in the source sheets or HubSpot are tracked in one log. <b>7 open items</b> — including the Agreement wording, Launch T-90, the removed Training Scheduled step, and three new steps with no sheet rows.</span><a href="https://docs.google.com/spreadsheets/d/1uRe55oQ8kaPkN0TygXpEUr7xpgkLTRmwqxi_s_W89oY/edit" target="_blank" rel="noopener">Updates Needed Sheet &#8599;</a></div>
 <div class="section-head">Overview: The Revenue Process</div>
 <div class="line-bulb">
   <!-- Dome: branches at top -->
@@ -1495,7 +1508,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v4.6 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; v4.6: both arrows drag by their label and remember where you put them (localStorage, per rail); double-click a label to snap it back. Reuses the parked-stash drag pattern. v4.5: second arrow added</div>
+  Proven Process Dream Map &middot; v4.7 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; v4.7: "Updates Needed" log sheet created and linked from the Itemized Lines tab &mdash; tracks every map change still awaiting a matching update in the source sheets or HubSpot. v4.6: both arrows draggable</div>
 
 <script>
 /* ===== TITLE-DEED MODAL ===== */
