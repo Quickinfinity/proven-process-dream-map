@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v4.5</title>
+<title>Proven Process Dream Map v4.6</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -635,6 +635,13 @@ body {
   font-family:'JetBrains Mono',monospace; font-size:6.5px; font-weight:800; letter-spacing:0.1px;
   color:var(--yellow-dark); white-space:nowrap;
   text-shadow:0 0 3px var(--cream),0 0 3px var(--cream),0 0 2px var(--cream),0 0 2px var(--cream); }
+
+/* Rails are draggable by their label only. The line and arrowhead stay pointer-events:none
+   so the squares underneath remain clickable; just the small label intercepts a grab. */
+.fp-rail .fp-text { pointer-events:auto; cursor:grab; user-select:none; }
+.fp-rail .fp-text:active { cursor:grabbing; }
+.fp-rail.dragging { z-index:60; }
+.fp-rail.dragging .fp-text { cursor:grabbing; }
 </style>
 </head>
 <body>
@@ -642,7 +649,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v4.5 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; Second arrow: "Learn to Launch and Earn with an Incredible Business"</div>
+  <div class="version">v4.6 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; Both arrows are draggable by their label (double-click to reset)</div>
 </div>
 
 <div class="tabs">
@@ -677,9 +684,9 @@ body {
 
 <div class="board" id="outerBoardGrid">
 <!-- Fast Pass rail: GO (c2) -> Market Study (c6) -->
-<div class="fp-rail" style="grid-row:1;grid-column:2 / span 4;"><div class="fp-v"></div><div class="fp-h"></div><div class="fp-head"></div><div class="fp-text">Learn to Plan with the Success Engineering Course</div></div>
+<div class="fp-rail" id="fp-rail-1" style="grid-row:1;grid-column:2 / span 4;"><div class="fp-v"></div><div class="fp-h"></div><div class="fp-head"></div><div class="fp-text">Learn to Plan with the Success Engineering Course</div></div>
 <!-- second rail: Onboard to DCU (c7) -> Run-the-Business (c10), pointing at the DCU corner -->
-<div class="fp-rail" style="grid-row:1;grid-column:7 / span 4;"><div class="fp-v"></div><div class="fp-h"></div><div class="fp-head"></div><div class="fp-text">Learn to Launch and Earn with an Incredible Business</div></div>
+<div class="fp-rail" id="fp-rail-2" style="grid-row:1;grid-column:7 / span 4;"><div class="fp-v"></div><div class="fp-h"></div><div class="fp-head"></div><div class="fp-text">Learn to Launch and Earn with an Incredible Business</div></div>
 
 <!-- Player piece — shield that morphs: S → Customer → L-1 (orange) → L-2 (green at CLIENT) -->
 <div class="player-piece hidden" id="outerPlayerPiece">
@@ -1488,7 +1495,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v4.5 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; v4.5: second arrow under Onboard to DCU &rarr; Run-the-Business (c7&ndash;c10) reading "Learn to Launch and Earn with an Incredible Business", pointing at the DCU corner. Reuses the same rail component as the first arrow. v4.4: first arrow reads "Learn to Plan with the Success Engineering Course"</div>
+  Proven Process Dream Map &middot; v4.6 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; v4.6: both arrows drag by their label and remember where you put them (localStorage, per rail); double-click a label to snap it back. Reuses the parked-stash drag pattern. v4.5: second arrow added</div>
 
 <script>
 /* ===== TITLE-DEED MODAL ===== */
@@ -2322,6 +2329,65 @@ function switchTab(tab) {
 <script>
 /* Walk-the-Lap draggable floating controls v1.3 */
 (function(){function mk(el){if(!el||el.dataset.dragBound)return;el.dataset.dragBound='1';var h=el.querySelector('.game-controls-title')||el;h.style.cursor='move';var on=false,sx,sy,sl,st;h.addEventListener('mousedown',function(e){on=true;el.classList.add('dragging');var pr=(el.offsetParent||document.body).getBoundingClientRect();var er=el.getBoundingClientRect();sl=er.left+er.width/2-pr.left;st=er.top+er.height/2-pr.top;el.style.left=sl+'px';el.style.top=st+'px';sx=e.clientX;sy=e.clientY;e.preventDefault();});document.addEventListener('mousemove',function(e){if(!on)return;el.style.left=(sl+e.clientX-sx)+'px';el.style.top=(st+e.clientY-sy)+'px';});document.addEventListener('mouseup',function(){on=false;el.classList.remove('dragging');});}function boot(){document.querySelectorAll('.game-controls-floating').forEach(mk);}if(document.readyState!=='loading')boot();else document.addEventListener('DOMContentLoaded',boot);})();
+
+/* ===== Draggable rails (Joe 2026-11-07) — same transform + localStorage pattern as the
+   parked stash. Each rail remembers its own offset; the label is the handle. ===== */
+(function () {
+  ['fp-rail-1', 'fp-rail-2'].forEach(function (id) {
+    const rail = document.getElementById(id);
+    if (!rail) return;
+    const handle = rail.querySelector('.fp-text');
+    if (!handle) return;
+    const KEY = 'fpRail:' + id;
+
+    let state = { tx: 0, ty: 0 };
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (saved && typeof saved.tx === 'number') state = saved;
+    } catch (ex) {}
+    function apply() { rail.style.transform = 'translate(' + state.tx + 'px,' + state.ty + 'px)'; }
+    function persist() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (ex) {} }
+    apply();
+
+    let active = false, startX = 0, startY = 0, origX = 0, origY = 0;
+    function onStart(e) {
+      e.preventDefault();
+      active = true;
+      rail.classList.add('dragging');
+      const pt = e.touches ? e.touches[0] : e;
+      startX = pt.clientX; startY = pt.clientY;
+      origX = state.tx; origY = state.ty;
+    }
+    function onMove(e) {
+      if (!active) return;
+      e.preventDefault();
+      const pt = e.touches ? e.touches[0] : e;
+      state.tx = origX + (pt.clientX - startX);
+      state.ty = origY + (pt.clientY - startY);
+      apply();
+    }
+    function onEnd() {
+      if (!active) return;
+      active = false;
+      rail.classList.remove('dragging');
+      persist();
+    }
+    handle.addEventListener('mousedown', onStart);
+    handle.addEventListener('touchstart', onStart, { passive: false });
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('touchend', onEnd);
+
+    /* double-click the label to snap the rail back to its default spot */
+    handle.addEventListener('dblclick', function (e) {
+      e.preventDefault();
+      state = { tx: 0, ty: 0 };
+      apply(); persist();
+    });
+  });
+})();
+
 </script>
 </body>
 </html>
