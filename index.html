@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proven Process Dream Map v4.0</title>
+<title>Proven Process Dream Map v4.1</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -622,6 +622,19 @@ body {
   .deed { width:100%; }
   .deed .deed-top .pname { font-size:21px; }
 }
+
+/* ===== Fast Pass rail: drops out of GO, runs along the bottom of the top-row cards,
+   and points at the Market Study square. Overlay only - pointer-events:none so every
+   square underneath stays clickable. ===== */
+.fp-rail { position:relative; align-self:end; justify-self:stretch; height:16px; z-index:8; pointer-events:none; }
+.fp-rail .fp-v { position:absolute; left:6px; bottom:5px; width:2px; height:10px; background:var(--yellow-dark); border-radius:1px; }
+.fp-rail .fp-h { position:absolute; left:6px; right:11px; bottom:5px; height:2px; background:var(--yellow-dark); border-radius:1px; }
+.fp-rail .fp-head { position:absolute; right:2px; bottom:1px; width:0; height:0;
+  border-left:9px solid var(--yellow-dark); border-top:5px solid transparent; border-bottom:5px solid transparent; }
+.fp-rail .fp-text { position:absolute; left:0; right:0; bottom:8px; text-align:center;
+  font-family:'JetBrains Mono',monospace; font-size:7px; font-weight:800; letter-spacing:0.6px;
+  text-transform:uppercase; color:var(--yellow-dark); white-space:nowrap;
+  text-shadow:0 0 3px var(--cream),0 0 3px var(--cream),0 0 2px var(--cream),0 0 2px var(--cream); }
 </style>
 </head>
 <body>
@@ -629,7 +642,7 @@ body {
 <div class="header">
   <h1>Proven Process Dream Map</h1>
   <div class="tagline">Revenue Journey Architecture</div>
-  <div class="version">v4.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; Deposit Received now assigns the Customer CSE</div>
+  <div class="version">v4.1 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; Fast Pass (Success Course) rail: GO &rarr; Market Study</div>
 </div>
 
 <div class="tabs">
@@ -663,6 +676,8 @@ body {
 </div>
 
 <div class="board" id="outerBoardGrid">
+<!-- Fast Pass rail: GO (c2) -> Market Study (c6) -->
+<div class="fp-rail" style="grid-row:1;grid-column:2 / span 5;"><div class="fp-v"></div><div class="fp-h"></div><div class="fp-head"></div><div class="fp-text">Fast Pass (Success Course)</div></div>
 
 <!-- Player piece — shield that morphs: S → Customer → L-1 (orange) → L-2 (green at CLIENT) -->
 <div class="player-piece hidden" id="outerPlayerPiece">
@@ -1471,7 +1486,7 @@ body {
 
 <div class="footer">
   <div class="brands">The Concrete Protector &bull; Warrior Equipment &bull; Sanitred &bull; Scientific Concrete Polishing</div>
-  Proven Process Dream Map &middot; v4.0 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; v4.0: Deposit Received seat changed BDR &rarr; "Assign Customer CSE", resolving the green/Deal-2 square that still carried a BDR label (v3.9: Design Build naming + Coaching Commitment Agreement)</div>
+  Proven Process Dream Map &middot; v4.1 &middot; C-6-06-TCP &middot; Origin 2026-06-05 &middot; Updated 2026-11-07 ET &middot; v4.1: "Fast Pass (Success Course)" rail added &mdash; drops out of GO, runs along the bottom of the top-row cards and points at Market Study (c2&ndash;c6). Overlay only, pointer-events:none, so every square stays clickable (v4.0: Deposit Received assigns the Customer CSE)</div>
 
 <script>
 /* ===== TITLE-DEED MODAL ===== */
